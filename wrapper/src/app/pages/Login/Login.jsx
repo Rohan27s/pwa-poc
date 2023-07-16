@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from "react";
 import LoginMedical from "../LoginMedical";
 import Home from "../Home";

@@ -1,17 +1,20 @@
+"use client"
 import React, { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/navigation'
+
 import CommonModal from "../Modal";
 import isOnline from 'is-online';
 import { logout } from "../../services/utils/index.js";
 import { useEffect } from "react";
 
 const CommonLayout = (props) => {
-  const navigate = useNavigate();
+  const router = useRouter()
+
   const [logoutModal, showLogoutModal] = useState(false);
   const [online, setOnline] = useState(true);
   const onlineInterval = useRef();
@@ -49,7 +52,7 @@ const CommonLayout = (props) => {
                 onClick={() => {
                   props.backFunction
                     ? props.backFunction()
-                    : navigate(props.back);
+                    : router.push(props.back);
                 }}
               />
             )}

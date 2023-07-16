@@ -1,15 +1,17 @@
+"use client"
 import React, { useState } from "react";
 import CommonLayout from "../components/CommonLayout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
 import Button from "../components/Button";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/navigation'
 import { loginMedical } from "../services/api";
 import ROUTE_MAP from "../services/routing/routeMap";
 import { setCookie } from "../services/utils";
 
 const LoginMedical = ({ handleStepChangeForLogin }) => {
-  const navigate = useNavigate();
+  const router = useRouter()
+
   const [error, setError] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -43,9 +45,9 @@ const LoginMedical = ({ handleStepChangeForLogin }) => {
       let loggedInUser = loginRes.result.data.user;
       setCookie("userData", loggedInUser);
       if (userIsAdminForPortal(loggedInUser.user.registrations)) {
-        navigate(ROUTE_MAP.admin);
+        router.push(ROUTE_MAP.admin);
       } else {
-        navigate(ROUTE_MAP.root);
+        router.push(ROUTE_MAP.assessment_type);
       }
       return;
     }
@@ -106,7 +108,7 @@ const LoginMedical = ({ handleStepChangeForLogin }) => {
         />
         <p
           className="text-secondary py-5 animate__animated animate__fadeInDown"
-          onClick={() => navigate(ROUTE_MAP.forgot_password)}
+          onClick={() => router.push(ROUTE_MAP.forgot_password)}
         >
           Forgot Password?
         </p>

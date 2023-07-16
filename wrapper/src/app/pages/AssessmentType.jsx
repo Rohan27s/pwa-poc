@@ -1,7 +1,8 @@
+"use client"
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useRouter } from 'next/navigation'
 import Button from "../components/Button";
 import CommonLayout from "../components/CommonLayout";
 import ROUTE_MAP from "../services/routing/routeMap";
@@ -10,7 +11,7 @@ import toast from 'react-hot-toast';
 import { getDataFromHasura, saveDataToHasura } from "../services/api";
 
 const AssessmentType = () => {
-  const navigate = useNavigate();
+  const router = useRouter()
 
   const [textData, setTextData] = useState();
   const [dateData, setDateData] = useState();
@@ -58,7 +59,7 @@ const AssessmentType = () => {
           Select Form
         </p>
         {/* <Button text="Test Form" styles="lg:w-[70%] animate__animated animate__fadeInDown" onClick={() => { navigator.onLine ? navigate(ROUTE_MAP.otherforms_param_formName + "hospital_clinical_facilities") : navigate(ROUTE_MAP.offline_odk_form + "hospital_clinical_facilities") }} /> */}
-        <Button text="Test Form" styles="lg:w-[70%] animate__animated animate__fadeInDown" onClick={() => { navigate(ROUTE_MAP.otherforms_param_formName + "test_form") }} />
+        <Button text="Test Form" styles="lg:w-[70%] animate__animated animate__fadeInDown" onClick={() => { router.push(ROUTE_MAP.otherforms_param_formName + "test_form") }} />
         <div className="flex flex-col py-3 w-full mt-10">
           <span className="text-secondary pb-2 font-medium">
             Dummy Text Input
