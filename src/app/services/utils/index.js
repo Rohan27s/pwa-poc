@@ -1,3 +1,4 @@
+"use client"
 import Cookies from "js-cookie";
 import XMLParser from "react-xml-parser";
 import localforage from "localforage";
@@ -6,7 +7,7 @@ import axios from "axios";
 
 export const makeHasuraCalls = async (query) => {
   const userData = getCookie("userData");
-  return fetch(process.env.REACT_APP_HASURA_URL, {
+  return fetch(process.env.NEXT_PUBLIC_HASURA_URL, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -199,7 +200,7 @@ export const getOfflineCapableForm = async (formId) => {
   try {
     const appEnvs = await getFromLocalForage('appEnvs', false);
     const ENKETO_URL = appEnvs.ENKETO_URL;
-    const OPEN_ROSA_SERVER_URL = appEnvs.OPEN_ROSA_SERVER_URL;
+    const OPEN_ROSA_SERVER_URL = appEnvs.NEXT_PUBLIC_OPEN_ROSA_SERVER_URL;
     if (navigator.onLine) {
       let res = await axios.post(ENKETO_URL + "/api/v2/survey/offline",
         {

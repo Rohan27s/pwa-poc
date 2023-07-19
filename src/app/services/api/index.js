@@ -1,8 +1,8 @@
 import axios from "axios";
 import { getFromLocalForage, makeHasuraCalls } from "../utils";
 
-const BASE_URL = process.env.REACT_APP_USER_SERVICE_URL;
-const applicationId = process.env.REACT_APP_APPLICATION_ID;
+const BASE_URL = process.env.NEXT_PUBLIC_USER_SERVICE_URL;
+const applicationId = process.env.NEXT_PUBLIC_APPLICATION_ID;
 
 export const loginMedical = async (username, pass) => {
   try {
@@ -111,7 +111,7 @@ export const getMedicalAssessmentsUpcoming = () => {
 export const getPrefillXML = async (form, onFormSuccessData, prefillXML, imageUrls) => {
   try {
     const appEnvs = await getFromLocalForage('appEnvs', false);
-    const ENKETO_MANAGER_URL = appEnvs.ENKETO_MANAGER_URL;
+    const ENKETO_MANAGER_URL = appEnvs.NEXT_PUBLIC_ENKETO_MANAGER_URL;
     const res = await axios.post(
       `${ENKETO_MANAGER_URL}/prefillXML?form=${form}&onFormSuccessData=${encodeURI(
         JSON.stringify(onFormSuccessData)

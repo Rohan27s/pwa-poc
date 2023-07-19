@@ -4,7 +4,7 @@ import CommonLayout from "../components/CommonLayout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
 import Button from "../components/Button";
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 import { loginMedical } from "../services/api";
 import ROUTE_MAP from "../services/routing/routeMap";
 import { setCookie } from "../services/utils";
@@ -47,7 +47,7 @@ const LoginMedical = ({ handleStepChangeForLogin }) => {
       if (userIsAdminForPortal(loggedInUser.user.registrations)) {
         router.push(ROUTE_MAP.admin);
       } else {
-        router.push(ROUTE_MAP.assessment_type);
+        router.push(ROUTE_MAP.root);
       }
       return;
     }

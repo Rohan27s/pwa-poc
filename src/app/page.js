@@ -6,15 +6,14 @@ import { createContext, useEffect, useRef, useState } from "react";
 import MedicalAssessor from "./pages/MedicalAssessor";
 import MedicalAssessments from "./pages/MedicalAssessments";
 import UpcomingMedicalAssessments from "./pages/UpcomingMedicalAssessments";
-import CaptureLocation from "./pages/CaptureLocation";
+import CaptureLocation from "./pages/CaptureLocation/page";
 import ForgotPassword from "./pages/ForgotPassword";
 import GenericOdkForm from "./pages/forms/GenericOdkForm";
 import ROUTE_MAP from "./services/routing/routeMap";
-import Login from "./pages/Login/Login";
+import Login from "./pages/login/page";
 import PrivateRoute from "./services/routing/PrivateRoute/PrivateRoute";
 import { getCookie, getFromLocalForage, setToLocalForage } from "./services/utils";
-import AssessmentType from "./pages/AssessmentType";
-import OfflineOdkForm from "./pages/OfflineOdkForm";
+import AssessmentType from "./pages/AssessmentType/page";
 import toast, { Toaster } from 'react-hot-toast';
 import { saveDataToHasura } from "./services/api";
 import { useServiceWorker } from "./hooks/useServiceWorker";
@@ -22,6 +21,7 @@ import CommonModal from "./components/Modal";
 export const StateContext = createContext();
 
 function App() {
+  
   const [state, setState] = useState();
   const { waitingWorker, showReload, reloadPage } = useServiceWorker();
   const [envModal, showEnvModal] = useState(false);
@@ -150,14 +150,7 @@ function App() {
                 </PrivateRoute>
               }
             />
-            <Route
-              path={`${ROUTE_MAP.offline_odk_form}:formName`}
-              element={
-                <PrivateRoute>
-                  <OfflineOdkForm />
-                </PrivateRoute>
-              }
-            />
+           
             <Route path={ROUTE_MAP.root_star} element={<Home />} />
           </Routes>
         </BrowserRouter>
@@ -215,6 +208,7 @@ function App() {
       </CommonModal>}
     </div>
   );
+  
 }
 
 export default App;

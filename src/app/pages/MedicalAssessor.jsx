@@ -31,15 +31,11 @@ const MedicalAssessor = () => {
           Please check your assessments
         </p>
         <Button
-          text="Today's Assessments"
+          text="Get Started"
           styles="w-80 lg:w-[60%] animate__animated animate__fadeInDown"
-          onClick={() => handleClick(ROUTE_MAP.medical_assessments)}
+          onClick={() => handleClick(ROUTE_MAP.capture_location)}
         />
-        <Button
-          text="Upcoming"
-          styles="w-80 lg:w-[60%] animate__animated animate__fadeInDown"
-          onClick={() => handleClick(ROUTE_MAP.upcoming_medical_assessments)}
-        />
+       
       </div>
     </CommonLayout>
   );

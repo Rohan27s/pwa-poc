@@ -3,12 +3,12 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useRouter } from 'next/navigation'
-import Button from "../components/Button";
-import CommonLayout from "../components/CommonLayout";
-import ROUTE_MAP from "../services/routing/routeMap";
-import { getFromLocalForage, setToLocalForage } from "../services/utils";
+import Button from "../../components/Button";
+import CommonLayout from "../../components/CommonLayout";
+import ROUTE_MAP from "../../services/routing/routeMap";
+import { getFromLocalForage, setToLocalForage } from "../../services/utils";
 import toast from 'react-hot-toast';
-import { getDataFromHasura, saveDataToHasura } from "../services/api";
+import { getDataFromHasura, saveDataToHasura } from "../../services/api";
 
 const AssessmentType = () => {
   const router = useRouter()

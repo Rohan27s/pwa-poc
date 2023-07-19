@@ -7,8 +7,8 @@ import { StateContext } from "@/app/page";
 import { getCookie, getFormData, getFromLocalForage, getOfflineCapableForm, handleFormEvents, isImage, makeDataForPrefill, setCookie, setToLocalForage, updateFormData } from "../../services/utils";
 import ROUTE_MAP from "../../services/routing/routeMap";
 
-const ENKETO_MANAGER_URL = process.env.REACT_APP_ENKETO_MANAGER_URL;
-const ENKETO_URL = process.env.REACT_APP_ENKETO_URL;
+const ENKETO_MANAGER_URL = process.env.NEXT_PUBLIC_ENKETO_MANAGER_UR;
+const ENKETO_URL = process.env.NEXT_PUBLIC_HASURA_URL;
 
 const GenericOdkForm = () => {
   const user = getCookie("userData");

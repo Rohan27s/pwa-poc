@@ -1,12 +1,16 @@
+"use client"
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { StateContext } from "../page";
-import Button from "../components/Button";
-import CommonLayout from "../components/CommonLayout";
-import ROUTE_MAP from "../services/routing/routeMap";
-import { getCookie } from "../services/utils";
+import { useRouter } from 'next/navigation';
+
+import { StateContext } from "../../page";
+import Button from "../../components/Button";
+import CommonLayout from "../../components/CommonLayout";
+import ROUTE_MAP from "../../services/routing/routeMap";
+import { getCookie } from "../../services/utils";
 
 const CaptureLocation = () => {
+  const router = useRouter()
+
   const [lat, setLat] = useState(0);
   const [long, setLong] = useState(0);
   const [showMap, setShowMap] = useState(false);
@@ -16,7 +20,6 @@ const CaptureLocation = () => {
   const { state, setState } = useContext(StateContext);
   const [distance, setDistance] = useState(9999);
   const [error, setError] = useState(false);
-  const navigate = useNavigate();
   const isMobile = window.innerWidth < 769;
 
   const getLocation = () => {
@@ -84,18 +87,18 @@ const CaptureLocation = () => {
   }
 
   const handleSubmit = () => {
-    if (
-      !state?.todayAssessment?.latitude ||
-      !state?.todayAssessment?.longitude
-    ) {
-      setError(
-        `Institute co-ordinates are missing. Please try again from start`
-      );
-      setTimeout(() => {
-        setError(false);
-      }, 5000);
-      return;
-    }
+    // if (
+    //   !state?.todayAssessment?.latitude ||
+    //   !state?.todayAssessment?.longitude
+    // ) {
+    //   setError(
+    //     `Institute co-ordinates are missing. Please try again from start`
+    //   );
+    //   setTimeout(() => {
+    //     setError(false);
+    //   }, 5000);
+    //   return;
+    // }
     if (!lat || !long) {
       setError(`Please capture location before continuing`);
       setTimeout(() => {
@@ -103,14 +106,14 @@ const CaptureLocation = () => {
       }, 5000);
       return;
     }
-    if (distance > 500) {
-      setError(`Please ensure you are within the institute premises`);
-      setTimeout(() => {
-        setError(false);
-      }, 5000);
-      return;
-    }
-    navigate(ROUTE_MAP.medical_assessment_options);
+    // if (distance > 500) {
+    //   setError(`Please ensure you are within the institute premises`);
+    //   setTimeout(() => {
+    //     setError(false);
+    //   }, 5000);
+    //   return;
+    // }
+    router.push(ROUTE_MAP.assessment_type);
   };
 
   useEffect(() => {
