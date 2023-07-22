@@ -1,27 +1,16 @@
 "use client"
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
 import "./App.css";
 import { createContext, useEffect, useRef, useState } from "react";
-import MedicalAssessor from "./pages/MedicalAssessor";
-import MedicalAssessments from "./pages/MedicalAssessments";
-import UpcomingMedicalAssessments from "./pages/UpcomingMedicalAssessments";
-import CaptureLocation from "./pages/CaptureLocation/page";
-import ForgotPassword from "./pages/ForgotPassword";
-import GenericOdkForm from "./pages/forms/GenericOdkForm";
-import ROUTE_MAP from "./services/routing/routeMap";
-import Login from "./pages/login/page";
-import PrivateRoute from "./services/routing/PrivateRoute/PrivateRoute";
 import { getCookie, getFromLocalForage, setToLocalForage } from "./services/utils";
-import AssessmentType from "./pages/AssessmentType/page";
 import toast, { Toaster } from 'react-hot-toast';
 import { saveDataToHasura } from "./services/api";
 import { useServiceWorker } from "./hooks/useServiceWorker";
 import CommonModal from "./components/Modal";
-export const StateContext = createContext();
+import Login from "./pages/login/page";
+
+// export const StateContext = createContext();
 
 function App() {
-  
   const [state, setState] = useState();
   const { waitingWorker, showReload, reloadPage } = useServiceWorker();
   const [envModal, showEnvModal] = useState(false);
@@ -31,9 +20,9 @@ function App() {
     OPEN_ROSA_SERVER_URL: ""
   });
 
-  useEffect(() => {
-    const user = getCookie("userData");
-  }, []);
+  // useEffect(() => {
+  //   const user = getCookie("userData");
+  // }, []);
 
   useEffect(() => {
     if (showReload && waitingWorker) {
@@ -86,75 +75,10 @@ function App() {
     checkEnvsForApp()
   }, [])
 
+
   return (
     <div className="App">
-      <StateContext.Provider value={{ state, setState }}>
-        <BrowserRouter>
-          <div style={{ opacity: 0, position: 'absolute', zIndex: -1 }}>
-            <GenericOdkForm />
-          </div>
-          <Routes>
-            <Route
-              path={ROUTE_MAP.root}
-              element={
-                <PrivateRoute>
-                  <MedicalAssessor />
-                </PrivateRoute>
-              }
-            />
-            <Route path={ROUTE_MAP.login} element={<Login />} />
-            {/*to cache start */}
-            <Route
-              path={ROUTE_MAP.medical_assessments}
-              element={
-                <PrivateRoute>
-                  <MedicalAssessments />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path={ROUTE_MAP.upcoming_medical_assessments}
-              element={
-                <PrivateRoute>
-                  <UpcomingMedicalAssessments />
-                </PrivateRoute>
-              }
-            />
-            {/*to cache  end */}
-
-            <Route
-              path={ROUTE_MAP.capture_location}
-              element={
-                <PrivateRoute>
-                  <CaptureLocation />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path={ROUTE_MAP.forgot_password}
-              element={<ForgotPassword />}
-            />
-            <Route
-              path={ROUTE_MAP.assessment_type}
-              element={
-                <PrivateRoute>
-                  <AssessmentType />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path={`${ROUTE_MAP.otherforms_param_formName}:formName`}
-              element={
-                <PrivateRoute>
-                  <GenericOdkForm />
-                </PrivateRoute>
-              }
-            />
-           
-            <Route path={ROUTE_MAP.root_star} element={<Home />} />
-          </Routes>
-        </BrowserRouter>
-      </StateContext.Provider>
+      <Login />
       <Toaster />
       {envModal && <CommonModal>
         <div>
@@ -208,7 +132,7 @@ function App() {
       </CommonModal>}
     </div>
   );
-  
+
 }
 
 export default App;

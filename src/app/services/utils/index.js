@@ -124,7 +124,7 @@ export const setToLocalForage = async (key, value, isLoggedIn = true) => {
 export const handleFormEvents = async (startingForm, afterFormSubmit, e) => {
   const user = getCookie("userData");
   const appEnvs = await getFromLocalForage('appEnvs', false);
-  const ENKETO_URL = appEnvs.ENKETO_URL;
+  const ENKETO_URL = process.env.NEXT_PUBLIC_ENKETO_URL;
   if (
     e.origin == ENKETO_URL &&
     JSON.parse(e?.data)?.state !== "ON_FORM_SUCCESS_COMPLETED"

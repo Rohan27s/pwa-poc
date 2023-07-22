@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
 
-import { StateContext } from "../../page";
+// import { StateContext } from "../../page";
 import Button from "../../components/Button";
 import CommonLayout from "../../components/CommonLayout";
 import ROUTE_MAP from "../../services/routing/routeMap";
@@ -17,7 +17,7 @@ const CaptureLocation = () => {
   const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const [role, setRole] = useState('');
-  const { state, setState } = useContext(StateContext);
+  const [state, setState] = useState(null);
   const [distance, setDistance] = useState(9999);
   const [error, setError] = useState(false);
   const isMobile = window.innerWidth < 769;
@@ -121,16 +121,18 @@ const CaptureLocation = () => {
     else setDisabled(true);
   }, [lat, long]);
 
-  useEffect(() => {
-    const {
-      user: { registrations },
-    } = getCookie("userData");
-    const roles = registrations[0]?.roles[0];
-    setRole(roles);
-  }, [])
+  // useEffect(() => {
+  //   const {
+  //     user: { registrations },
+  //   } = getCookie("userData");
+  //   const roles = registrations[0]?.roles[0];
+  //   setRole(roles);
+  // }, [])
 
   return (
-    <CommonLayout back={role == 'Medical' ? ROUTE_MAP.assessment_type : ROUTE_MAP.medical_assessments}>
+    // <CommonLayout back={role == 'Medical' ? ROUTE_MAP.assessment_type : ROUTE_MAP.medical_assessments}>
+    <CommonLayout back={ROUTE_MAP.medical_assessments}>
+
       <div className="flex flex-col px-5 py-8 items-center">
         <img
           src="/assets/locationGirl.png"
@@ -168,15 +170,14 @@ const CaptureLocation = () => {
             }
           />
         )}
+        {!disabled &&
         <Button
           text="Continue"
           styles={
-            disabled
-              ? "bg-white text-primary opacity-75 w-80 lg:w-[60%] animate__animated animate__fadeInDown"
-              : "w-80 lg:w-[60%]"
+            "w-80 lg:w-[60%]"
           }
           onClick={handleSubmit}
-        />
+        />}
         <style>
           {`
                     .loader {

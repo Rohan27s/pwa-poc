@@ -8,8 +8,11 @@ import { useRouter } from 'next/navigation';
 import { loginMedical } from "../services/api";
 import ROUTE_MAP from "../services/routing/routeMap";
 import { setCookie } from "../services/utils";
+import { useDispatch } from 'react-redux';
+import { login, logout } from '../redux/store';
 
-const LoginMedical = ({ handleStepChangeForLogin }) => {
+const LoginMedical = () => {
+  const dispatch = useDispatch();
   const router = useRouter()
 
   const [error, setError] = useState("");
@@ -43,12 +46,20 @@ const LoginMedical = ({ handleStepChangeForLogin }) => {
     }
     if (loginRes.responseCode == "OK" && loginRes.result) {
       let loggedInUser = loginRes.result.data.user;
-      setCookie("userData", loggedInUser);
+
+
+      dispatch(login(loggedInUser));
+
+      // setCookie("userData", loggedInUser);
+      
       if (userIsAdminForPortal(loggedInUser.user.registrations)) {
         router.push(ROUTE_MAP.admin);
       } else {
         router.push(ROUTE_MAP.root);
       }
+      console.log(loggedInUser);
+    
+
       return;
     }
 
@@ -59,7 +70,7 @@ const LoginMedical = ({ handleStepChangeForLogin }) => {
   };
 
   return (
-    <CommonLayout backFunction={handleStepChangeForLogin} logoutDisabled>
+    <CommonLayout  logoutDisabled>
       <div className="flex flex-col px-5 py-8 items-center">
         <p className="text-secondary text-[34px] font-bold mt-5 lg:text-[45px] animate__animated animate__fadeInDown">
           Welcome Back
