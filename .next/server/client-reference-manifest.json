@@ -40,17 +40,17 @@
         "async": false
       }
     },
-    "(app-client)/./src/app/page.js": {
+    "(app-client)/./src/app/layout.js": {
       "*": {
-        "id": "(sc_client)/./src/app/page.js",
+        "id": "(sc_client)/./src/app/layout.js",
         "name": "*",
         "chunks": [],
         "async": false
       }
     },
-    "(app-client)/./src/app/layout.js": {
+    "(app-client)/./src/app/page.js": {
       "*": {
-        "id": "(sc_client)/./src/app/layout.js",
+        "id": "(sc_client)/./src/app/page.js",
         "name": "*",
         "chunks": [],
         "async": false
@@ -147,19 +147,19 @@
       ],
       "async": false
     },
-    "C:\\Users\\rohan\\OneDrive\\Desktop\\pwa-poc\\src\\app\\page.js": {
-      "id": "(app-client)/./src/app/page.js",
-      "name": "*",
-      "chunks": [
-        "app/page:static/chunks/app/page.js"
-      ],
-      "async": false
-    },
     "C:\\Users\\rohan\\OneDrive\\Desktop\\pwa-poc\\src\\app\\layout.js": {
       "id": "(app-client)/./src/app/layout.js",
       "name": "*",
       "chunks": [
         "app/layout:static/chunks/app/layout.js"
+      ],
+      "async": false
+    },
+    "C:\\Users\\rohan\\OneDrive\\Desktop\\pwa-poc\\src\\app\\page.js": {
+      "id": "(app-client)/./src/app/page.js",
+      "name": "*",
+      "chunks": [
+        "app/page:static/chunks/app/page.js"
       ],
       "async": false
     },
@@ -173,11 +173,11 @@
     }
   },
   "entryCSSFiles": {
-    "C:\\Users\\rohan\\OneDrive\\Desktop\\pwa-poc\\src\\app\\page": [
-      "static/css/app/page.css"
-    ],
     "C:\\Users\\rohan\\OneDrive\\Desktop\\pwa-poc\\src\\app\\layout": [
       "static/css/app/layout.css"
+    ],
+    "C:\\Users\\rohan\\OneDrive\\Desktop\\pwa-poc\\src\\app\\page": [
+      "static/css/app/page.css"
     ],
     "C:\\Users\\rohan\\OneDrive\\Desktop\\pwa-poc\\src\\app\\pages\\CaptureLocation\\page": [
       "static/css/app/pages/CaptureLocation/page.css"

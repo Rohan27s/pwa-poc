@@ -12,7 +12,7 @@ const authSlice = createSlice({
       state.isAuthenticated = true;
       state.user = action.payload;
     },
-    logout: (state) => {
+    logoutUser: (state) => {
       state.isAuthenticated = false;
       state.user = null;
     },
@@ -26,5 +26,5 @@ const store = configureStore({
   },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { login, logoutUser } = authSlice.actions;
 export default store;

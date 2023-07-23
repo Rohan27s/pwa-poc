@@ -11,9 +11,11 @@ import CommonModal from "../Modal";
 import isOnline from 'is-online';
 import { logout } from "../../services/utils/index.js";
 import { useEffect } from "react";
-
+import { logoutUser } from "@/app/redux/store";
+import { useDispatch } from "react-redux";
 const CommonLayout = (props) => {
   const router = useRouter()
+  const dispatch = useDispatch();
 
   const [logoutModal, showLogoutModal] = useState(false);
   const [online, setOnline] = useState(true);
@@ -76,7 +78,7 @@ const CommonLayout = (props) => {
             <div className="flex flex-row justify-center w-full py-4">
               <div
                 className="border border-primary text-primary py-1 px-7 mr-2 cursor-pointer lg:px-16 lg:py-3 lg:text-xl"
-                onClick={() => logout()}
+                onClick={() => {logout();dispatch(logoutUser);} }
               >
                 Yes
               </div>

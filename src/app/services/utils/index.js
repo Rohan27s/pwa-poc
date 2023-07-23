@@ -5,6 +5,7 @@ import localforage from "localforage";
 import { getMedicalAssessments, getPrefillXML, getSubmissionXML } from "../api";
 import axios from "axios";
 
+
 export const makeHasuraCalls = async (query) => {
   const userData = getCookie("userData");
   return fetch(process.env.NEXT_PUBLIC_HASURA_URL, {
@@ -75,11 +76,13 @@ export const getCookie = (cname) => {
 };
 
 export const logout = () => {
+
   localStorage.clear();
   sessionStorage.clear();
   window.location = "/";
   localforage.removeItem('appEnvs')
   removeCookie("userData");
+
 };
 
 export const removeCookie = (cname) => {
