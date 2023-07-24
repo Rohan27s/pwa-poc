@@ -1,5 +1,7 @@
 // store.js
 import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 
 const authSlice = createSlice({
   name: 'auth',
@@ -19,12 +21,22 @@ const authSlice = createSlice({
   },
 });
 
-const store = configureStore({
+const persistConfig = {
+  key: 'root', // key for the root of the storage
+  storage, // storage to use (e.g., localStorage)
+  whitelist: ['auth'], // specify the slices of the state to persist
+};
+
+const persistedAuthReducer = persistReducer(persistConfig, authSlice.reducer);
+
+ const store = configureStore({
   reducer: {
-    auth: authSlice.reducer,
+    auth: persistedAuthReducer, // use the persisted auth reducer
     // Add other reducers here if needed
   },
 });
 
+const persistor = persistStore(store);
+
 export const { login, logoutUser } = authSlice.actions;
-export default store;
+export { store, persistor };

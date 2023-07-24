@@ -1,5 +1,5 @@
 "use client"
-import React from "react";
+import React from 'react'
 import { useEffect } from "react";
 import { useState } from "react";
 import { useRouter } from 'next/navigation'
@@ -9,16 +9,17 @@ import ROUTE_MAP from "../../services/routing/routeMap";
 import { getFromLocalForage, setToLocalForage } from "../../services/utils";
 import toast from 'react-hot-toast';
 import { getDataFromHasura, saveDataToHasura } from "../../services/api";
-
-const AssessmentType = () => {
-  const router = useRouter()
+import { useUserData } from '@/app/hooks/useAuth';
+const page = () => {
+    const router = useRouter()
 
   const [textData, setTextData] = useState();
   const [dateData, setDateData] = useState();
 
+  const userData = useUserData();
   const getInitialData = async () => {
     if (navigator.onLine) {
-      let appData = await getDataFromHasura();
+      let appData = await getDataFromHasura(userData);
       if (appData?.data?.dummy_poc_table?.length) {
         setTextData(appData?.data?.dummy_poc_table?.[0].text_input)
         setDateData(appData?.data?.dummy_poc_table?.[0].date_input)
@@ -51,15 +52,14 @@ const AssessmentType = () => {
   useEffect(() => {
     getInitialData();
   }, [])
-
   return (
-    <CommonLayout back={ROUTE_MAP.medical_assessments}>
+    <CommonLayout back={ROUTE_MAP.capture_location}>
       <div className="flex flex-col px-5 py-8 items-center">
         <p className="text-secondary text-[28px] font-bold mt-4 lg:text-[45px] animate__animated animate__fadeIn">
           Select Form
         </p>
         {/* <Button text="Test Form" styles="lg:w-[70%] animate__animated animate__fadeInDown" onClick={() => { navigator.onLine ? navigate(ROUTE_MAP.otherforms_param_formName + "hospital_clinical_facilities") : navigate(ROUTE_MAP.offline_odk_form + "hospital_clinical_facilities") }} /> */}
-        <Button text="Test Form" styles="lg:w-[70%] animate__animated animate__fadeInDown" onClick={() => { router.push(ROUTE_MAP.otherforms_param_formName + "test_form") }} />
+        <Button text="Test Form" styles="lg:w-[70%] animate__animated animate__fadeInDown" onClick={() => { router.push(ROUTE_MAP.generic_form_test) }} />
         <div className="flex flex-col py-3 w-full mt-10">
           <span className="text-secondary pb-2 font-medium">
             Dummy Text Input
@@ -85,7 +85,7 @@ const AssessmentType = () => {
         <div style={{ fontSize: 18, fontWeight: 'bolder', cursor: 'pointer' }} onClick={saveDataOnline}>Save Online</div>
       </div>
     </CommonLayout>
-  );
-};
+  )
+}
 
-export default AssessmentType;
+export default page

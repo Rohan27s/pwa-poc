@@ -2,19 +2,20 @@
 import './globals.css'
 import 'animate.css';
 import { Provider } from 'react-redux';
-import  store  from './redux/store.js'
-import { useState } from 'react';
+import { store } from './redux/store.js'
 export const metadata = {
   title: 'Workflow',
   description: 'Workflow is an Open Source project aimed towards the creation of data flow models using config files thereby allowing you to easily create and interact with stateful applications with minimum setup.',
 }
 
 export default function RootLayout({ children }) {
-  const [state, setState] = useState();
 
   return (
     <html lang="en">
       <body >
+        <head>
+          <title>Ratings App</title>
+        </head>
         <Provider store={store}>
             {children}
         </Provider>

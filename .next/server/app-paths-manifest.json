@@ -1,4 +1,7 @@
 {
   "/page": "app/page.js",
-  "/pages/CaptureLocation/page": "app/pages/CaptureLocation/page.js"
+  "/pages/CaptureLocation/page": "app/pages/CaptureLocation/page.js",
+  "/pages/login/page": "app/pages/login/page.js",
+  "/pages/AssessmentType/page": "app/pages/AssessmentType/page.js",
+  "/pages/generic-form-test/page": "app/pages/generic-form-test/page.js"
 }

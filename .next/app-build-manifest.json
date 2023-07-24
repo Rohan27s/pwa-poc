@@ -1,11 +1,5 @@
 {
   "pages": {
-    "/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/layout.css",
-      "static/chunks/app/layout.js"
-    ],
     "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -17,6 +11,30 @@
       "static/chunks/main-app.js",
       "static/css/app/pages/CaptureLocation/page.css",
       "static/chunks/app/pages/CaptureLocation/page.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/layout.css",
+      "static/chunks/app/layout.js"
+    ],
+    "/pages/AssessmentType/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/pages/AssessmentType/page.css",
+      "static/chunks/app/pages/AssessmentType/page.js"
+    ],
+    "/pages/login/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/pages/login/page.css",
+      "static/chunks/app/pages/login/page.js"
+    ],
+    "/pages/generic-form-test/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/pages/generic-form-test/page.css",
+      "static/chunks/app/pages/generic-form-test/page.js"
     ]
   }
 }

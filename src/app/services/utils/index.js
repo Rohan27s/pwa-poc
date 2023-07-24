@@ -4,16 +4,18 @@ import XMLParser from "react-xml-parser";
 import localforage from "localforage";
 import { getMedicalAssessments, getPrefillXML, getSubmissionXML } from "../api";
 import axios from "axios";
+import { userData } from "@/app/pages/login/page";
+import { useUserData } from "@/app/hooks/useAuth";
 
-
-export const makeHasuraCalls = async (query) => {
-  const userData = getCookie("userData");
+export const makeHasuraCalls = async (query,userData) => {
+  // const userData = getCookie("userData");
+  console.log(userData?.user.token);
   return fetch(process.env.NEXT_PUBLIC_HASURA_URL, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${userData.token}`,
+      Authorization: `Bearer ${userData?.user.token}`,
     },
     body: JSON.stringify(query),
   })

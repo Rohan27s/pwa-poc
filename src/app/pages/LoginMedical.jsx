@@ -49,9 +49,6 @@ const LoginMedical = () => {
 
 
       dispatch(login(loggedInUser));
-
-      // setCookie("userData", loggedInUser);
-      
       if (userIsAdminForPortal(loggedInUser.user.registrations)) {
         router.push(ROUTE_MAP.admin);
       } else {

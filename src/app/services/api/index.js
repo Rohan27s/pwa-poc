@@ -327,7 +327,7 @@ export const saveDataToHasura = (data) => {
   return makeHasuraCalls(query);
 };
 
-export const getDataFromHasura = () => {
+export const getDataFromHasura = (userData) => {
   const query = {
     query: `
     query MyQuery {
@@ -340,5 +340,5 @@ export const getDataFromHasura = () => {
       `,
     variables: {},
   };
-  return makeHasuraCalls(query);
+  return makeHasuraCalls(query,userData);
 };

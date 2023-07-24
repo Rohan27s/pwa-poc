@@ -19,7 +19,7 @@ const MedicalAssessor = () => {
   // }, [])
 
   return (
-    <CommonLayout back="/pages/login" backDisabled>
+    <CommonLayout back="/" backDisabled>
       <div className="flex flex-col px-5 py-8 items-center">
         <img
           src="/assets/medicalAssessorWelcome.png"

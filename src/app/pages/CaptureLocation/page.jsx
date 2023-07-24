@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 // import { StateContext } from "../../page";
 import Button from "../../components/Button";
 import CommonLayout from "../../components/CommonLayout";
-import ROUTE_MAP from "../../services/routing/routeMap";
+import ROUTE_MAP from "@/app/services/routing/routeMap";
 import { getCookie } from "../../services/utils";
 
 const CaptureLocation = () => {
@@ -30,22 +30,22 @@ const CaptureLocation = () => {
         setLong(p.coords.longitude);
         setShowMap(true);
         setLoading(false);
-        setState({
-          ...state,
-          userData: {
-            ...state.userData,
-            lat: p.coords.latitude,
-            long: p.coords.longitude,
-          },
-        });
-        setDistance(
-          calcDistance(
-            p.coords.latitude,
-            p.coords.longitude,
-            state.todayAssessment.latitude,
-            state.todayAssessment.longitude
-          )
-        );
+        // setState({
+        //   ...state,
+        //   userData: {
+        //     ...state.userData,
+        //     lat: p.coords.latitude,
+        //     long: p.coords.longitude,
+        //   },
+        // });
+        // setDistance(
+        //   calcDistance(
+        //     p.coords.latitude,
+        //     p.coords.longitude,
+        //     state.todayAssessment.latitude,
+        //     state.todayAssessment.longitude
+        //   )
+        // );
       });
     } else {
       setError(`Please allow location access.`);
@@ -86,7 +86,10 @@ const CaptureLocation = () => {
     return (Value * Math.PI) / 180;
   }
 
-  const handleSubmit = () => {
+  const handleClick = (route) => {
+    console.log(route)
+    router.push(route);
+
     // if (
     //   !state?.todayAssessment?.latitude ||
     //   !state?.todayAssessment?.longitude
@@ -99,13 +102,13 @@ const CaptureLocation = () => {
     //   }, 5000);
     //   return;
     // }
-    if (!lat || !long) {
-      setError(`Please capture location before continuing`);
-      setTimeout(() => {
-        setError(false);
-      }, 5000);
-      return;
-    }
+    // if (!lat || !long) {
+    //   setError(`Please capture location before continuing`);
+    //   setTimeout(() => {
+    //     setError(false);
+    //   }, 5000);
+    //   return;
+    // }
     // if (distance > 500) {
     //   setError(`Please ensure you are within the institute premises`);
     //   setTimeout(() => {
@@ -113,7 +116,7 @@ const CaptureLocation = () => {
     //   }, 5000);
     //   return;
     // }
-    router.push(ROUTE_MAP.assessment_type);
+    // console.log("caleed")
   };
 
   useEffect(() => {
@@ -131,7 +134,7 @@ const CaptureLocation = () => {
 
   return (
     // <CommonLayout back={role == 'Medical' ? ROUTE_MAP.assessment_type : ROUTE_MAP.medical_assessments}>
-    <CommonLayout back={ROUTE_MAP.medical_assessments}>
+    <CommonLayout back={ROUTE_MAP.root}>
 
       <div className="flex flex-col px-5 py-8 items-center">
         <img
@@ -176,7 +179,7 @@ const CaptureLocation = () => {
           styles={
             "w-80 lg:w-[60%]"
           }
-          onClick={handleSubmit}
+          onClick={() => {router.push(ROUTE_MAP.assessment_type);console.log("hey");}}
         />}
         <style>
           {`

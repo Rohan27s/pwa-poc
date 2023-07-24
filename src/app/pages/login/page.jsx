@@ -1,18 +1,15 @@
 "use client"
-import React, { useState } from "react";
+import React from "react";
 import LoginMedical from "../LoginMedical";
-import Home from "../Home/page";
 import MedicalAssessor from "../MedicalAssessor/page";
-import { useSelector } from "react-redux";
+import { useUserData } from "@/app/hooks/useAuth";
 const Login = () => {
-  // const [loginShow, setLoginShow] = useState(tr);
-  const auth1= useSelector((state)=>state.auth);
-console.log(auth1);
-  // const handleSetLoginShow = () => setLoginShow((oldValue) => !oldValue);
-  return auth1.isAuthenticated ? (
+const userData = useUserData();
+console.log(userData);
+  return userData.isAuthenticated ? (
     <MedicalAssessor/>
     ) : (
-      <LoginMedical handleStepChangeForLogin={auth1} />
+      <LoginMedical handleStepChangeForLogin={userData} />
   );
 };
 
