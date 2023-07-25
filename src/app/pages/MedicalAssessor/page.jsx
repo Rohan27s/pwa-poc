@@ -1,10 +1,11 @@
 "use client"
 import React, { useEffect } from "react";
 import { useRouter } from 'next/navigation';
-
+import Link from "next/link";
 import Button from "../../components/Button";
 import CommonLayout from "../../components/CommonLayout";
 import ROUTE_MAP from "../../services/routing/routeMap";
+import Linker from "@/app/components/Link";
 // import { cacheForms } from "../../services/utils";
 
 const MedicalAssessor = () => {
@@ -32,12 +33,13 @@ const MedicalAssessor = () => {
         <p className="text-primary text-md mb-2 animate__animated animate__fadeInDown">
           Please check your assessments
         </p>
-        <Button
+        <Linker
           text="Get Started"
           styles="w-80 lg:w-[60%] animate__animated animate__fadeInDown"
-          onClick={() => handleClick(ROUTE_MAP.capture_location)}
+          link={ROUTE_MAP.capture_location}
         />
        
+
       </div>
     </CommonLayout>
   );

@@ -10,6 +10,7 @@ import { getFromLocalForage, setToLocalForage } from "../../services/utils";
 import toast from 'react-hot-toast';
 import { getDataFromHasura, saveDataToHasura } from "../../services/api";
 import { useUserData } from '@/app/hooks/useAuth';
+import Linker from '@/app/components/Link';
 const page = () => {
     const router = useRouter()
   const [textData, setTextData] = useState();
@@ -58,7 +59,7 @@ const page = () => {
           Select Form
         </p>
         {/* <Button text="Test Form" styles="lg:w-[70%] animate__animated animate__fadeInDown" onClick={() => { navigator.onLine ? navigate(ROUTE_MAP.otherforms_param_formName + "hospital_clinical_facilities") : navigate(ROUTE_MAP.offline_odk_form + "hospital_clinical_facilities") }} /> */}
-        <Button text="Test Form" styles="lg:w-[70%] animate__animated animate__fadeInDown" onClick={() => { router.push(ROUTE_MAP.generic_form_test) }} />
+        <Linker text="Test Form" styles="lg:w-[70%] animate__animated animate__fadeInDown" link={ROUTE_MAP.generic_form_test} />
         <div className="flex flex-col py-3 w-full mt-10">
           <span className="text-secondary pb-2 font-medium">
             Dummy Text Input

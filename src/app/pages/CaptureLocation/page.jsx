@@ -7,6 +7,7 @@ import Button from "../../components/Button";
 import CommonLayout from "../../components/CommonLayout";
 import ROUTE_MAP from "@/app/services/routing/routeMap";
 import { getCookie } from "../../services/utils";
+import Linker from "@/app/components/Link";
 
 const CaptureLocation = () => {
   const router = useRouter()
@@ -174,12 +175,12 @@ const CaptureLocation = () => {
           />
         )}
         {!disabled &&
-        <Button
+        <Linker
           text="Continue"
           styles={
             "w-80 lg:w-[60%]"
           }
-          onClick={() => {router.push(ROUTE_MAP.assessment_type);console.log("hey");}}
+          link={ROUTE_MAP.assessment_type}
         />}
         <style>
           {`
