@@ -7,9 +7,7 @@ import axios from "axios";
 import { userData } from "@/app/pages/login/page";
 import { useUserData } from "@/app/hooks/useAuth";
 
-export const makeHasuraCalls = async (query,userData) => {
-  // const userData = getCookie("userData");
-  console.log(userData?.user.token);
+export const makeHasuraCalls = async (query, userData) => {
   return fetch(process.env.NEXT_PUBLIC_HASURA_URL, {
     method: "POST",
     headers: {
@@ -105,11 +103,12 @@ export const isImage = (key, filename) => {
 }
 
 
-export const getFromLocalForage = async (key, isLoggedIn = true) => {
-  const user = getCookie("userData");
+export const getFromLocalForage = async (key, isLoggedIn = true, userData) => {
+  const user = userData;
+  console.log(user);
   try {
     if (isLoggedIn)
-      return await localforage.getItem(user.user.id + "_" + key);
+      return await localforage.getItem(user?.user.id + "_" + key);
     else
       return await localforage.getItem(key);
   } catch (err) {
@@ -118,16 +117,17 @@ export const getFromLocalForage = async (key, isLoggedIn = true) => {
   }
 }
 
-export const setToLocalForage = async (key, value, isLoggedIn = true) => {
-  const user = getCookie("userData");
+export const setToLocalForage = async (key, value, isLoggedIn = true,user) => {
+  // const user = getCookie("userData");
+  console.log(user);
   if (isLoggedIn)
-    await localforage.setItem(user.user.id + "_" + key, value);
+    await localforage.setItem(user?.user.id + "_" + key, value);
   else
     await localforage.setItem(key, value);
 }
 
-export const handleFormEvents = async (startingForm, afterFormSubmit, e) => {
-  const user = getCookie("userData");
+export const handleFormEvents = async (startingForm, afterFormSubmit, e,user) => {
+  // const user = getCookie("userData");
   const appEnvs = await getFromLocalForage('appEnvs', false);
   const ENKETO_URL = process.env.NEXT_PUBLIC_ENKETO_URL;
   if (
@@ -143,7 +143,7 @@ export const handleFormEvents = async (startingForm, afterFormSubmit, e) => {
       await setToLocalForage(startingForm + `${new Date().toISOString().split("T")[0]}`, {
         formData: JSON.parse(e.data).formData,
         imageUrls: { ...prevData?.imageUrls, ...images }
-      })
+      },true,user)
     }
   }
   afterFormSubmit(e);
@@ -190,16 +190,16 @@ export const getFormData = async ({ loading, scheduleId, formSpec, startingForm,
   loading.current = false;
 };
 
-export const cacheForms = async (formName) => {
-  const user = getCookie("userData");
-  console.log("userData:", user)
-  console.log("Caching Forms ... ");
-  let prefilledFormUrl = await getPrefillXML(formName, {});
-  console.log(prefilledFormUrl)
-  let transformedForm = await axios.get('http://localhost:8085/transform?xform=' + prefilledFormUrl);
-  console.log("Trans form:", transformedForm.data)
-  setToLocalForage(formName, transformedForm.data);
-}
+// export const cacheForms = async (formName) => {
+//   const user = getCookie("userData");
+//   console.log("userData:", user)
+//   console.log("Caching Forms ... ");
+//   let prefilledFormUrl = await getPrefillXML(formName, {});
+//   console.log(prefilledFormUrl)
+//   let transformedForm = await axios.get('http://localhost:8085/transform?xform=' + prefilledFormUrl);
+//   console.log("Trans form:", transformedForm.data)
+//   setToLocalForage(formName, transformedForm.data);
+// }
 
 export const getOfflineCapableForm = async (formId) => {
   try {

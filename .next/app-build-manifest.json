@@ -6,29 +6,23 @@
       "static/css/app/page.css",
       "static/chunks/app/page.js"
     ],
-    "/pages/CaptureLocation/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/pages/CaptureLocation/page.css",
-      "static/chunks/app/pages/CaptureLocation/page.js"
-    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
+    "/pages/CaptureLocation/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/pages/CaptureLocation/page.css",
+      "static/chunks/app/pages/CaptureLocation/page.js"
+    ],
     "/pages/AssessmentType/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/pages/AssessmentType/page.css",
       "static/chunks/app/pages/AssessmentType/page.js"
-    ],
-    "/pages/login/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/pages/login/page.css",
-      "static/chunks/app/pages/login/page.js"
     ],
     "/pages/generic-form-test/page": [
       "static/chunks/webpack.js",

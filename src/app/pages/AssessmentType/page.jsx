@@ -12,7 +12,6 @@ import { getDataFromHasura, saveDataToHasura } from "../../services/api";
 import { useUserData } from '@/app/hooks/useAuth';
 const page = () => {
     const router = useRouter()
-
   const [textData, setTextData] = useState();
   const [dateData, setDateData] = useState();
 
@@ -25,7 +24,7 @@ const page = () => {
         setDateData(appData?.data?.dummy_poc_table?.[0].date_input)
       }
     } else {
-      let appData = await getFromLocalForage('appData');
+      let appData = await getFromLocalForage('appData',true,userData);
       setTextData(appData?.textData)
       setDateData(appData?.dateData);
     }
@@ -33,7 +32,7 @@ const page = () => {
 
   const handleInput = async (setter, val, type) => {
     setter(val);
-    let appData = await getFromLocalForage('appData') || {};
+    let appData = await getFromLocalForage('appData',true,userData) || {};
     appData[type] = val;
     setToLocalForage('appData', appData);
   }

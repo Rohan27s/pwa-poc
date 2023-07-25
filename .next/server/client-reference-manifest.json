@@ -48,14 +48,6 @@
         "async": false
       }
     },
-    "(app-client)/./src/app/pages/CaptureLocation/page.jsx": {
-      "*": {
-        "id": "(sc_client)/./src/app/pages/CaptureLocation/page.jsx",
-        "name": "*",
-        "chunks": [],
-        "async": false
-      }
-    },
     "(app-client)/./src/app/layout.js": {
       "*": {
         "id": "(sc_client)/./src/app/layout.js",
@@ -64,17 +56,17 @@
         "async": false
       }
     },
-    "(app-client)/./src/app/pages/AssessmentType/page.jsx": {
+    "(app-client)/./src/app/pages/CaptureLocation/page.jsx": {
       "*": {
-        "id": "(sc_client)/./src/app/pages/AssessmentType/page.jsx",
+        "id": "(sc_client)/./src/app/pages/CaptureLocation/page.jsx",
         "name": "*",
         "chunks": [],
         "async": false
       }
     },
-    "(app-client)/./src/app/pages/login/page.jsx": {
+    "(app-client)/./src/app/pages/AssessmentType/page.jsx": {
       "*": {
-        "id": "(sc_client)/./src/app/pages/login/page.jsx",
+        "id": "(sc_client)/./src/app/pages/AssessmentType/page.jsx",
         "name": "*",
         "chunks": [],
         "async": false
@@ -179,14 +171,6 @@
       ],
       "async": false
     },
-    "C:\\Users\\rohan\\OneDrive\\Desktop\\pwa-poc\\src\\app\\pages\\CaptureLocation\\page.jsx": {
-      "id": "(app-client)/./src/app/pages/CaptureLocation/page.jsx",
-      "name": "*",
-      "chunks": [
-        "app/pages/CaptureLocation/page:static/chunks/app/pages/CaptureLocation/page.js"
-      ],
-      "async": false
-    },
     "C:\\Users\\rohan\\OneDrive\\Desktop\\pwa-poc\\src\\app\\layout.js": {
       "id": "(app-client)/./src/app/layout.js",
       "name": "*",
@@ -195,19 +179,19 @@
       ],
       "async": false
     },
+    "C:\\Users\\rohan\\OneDrive\\Desktop\\pwa-poc\\src\\app\\pages\\CaptureLocation\\page.jsx": {
+      "id": "(app-client)/./src/app/pages/CaptureLocation/page.jsx",
+      "name": "*",
+      "chunks": [
+        "app/pages/CaptureLocation/page:static/chunks/app/pages/CaptureLocation/page.js"
+      ],
+      "async": false
+    },
     "C:\\Users\\rohan\\OneDrive\\Desktop\\pwa-poc\\src\\app\\pages\\AssessmentType\\page.jsx": {
       "id": "(app-client)/./src/app/pages/AssessmentType/page.jsx",
       "name": "*",
       "chunks": [
         "app/pages/AssessmentType/page:static/chunks/app/pages/AssessmentType/page.js"
-      ],
-      "async": false
-    },
-    "C:\\Users\\rohan\\OneDrive\\Desktop\\pwa-poc\\src\\app\\pages\\login\\page.jsx": {
-      "id": "(app-client)/./src/app/pages/login/page.jsx",
-      "name": "*",
-      "chunks": [
-        "app/pages/login/page:static/chunks/app/pages/login/page.js"
       ],
       "async": false
     },
@@ -224,17 +208,14 @@
     "C:\\Users\\rohan\\OneDrive\\Desktop\\pwa-poc\\src\\app\\page": [
       "static/css/app/page.css"
     ],
-    "C:\\Users\\rohan\\OneDrive\\Desktop\\pwa-poc\\src\\app\\pages\\CaptureLocation\\page": [
-      "static/css/app/pages/CaptureLocation/page.css"
-    ],
     "C:\\Users\\rohan\\OneDrive\\Desktop\\pwa-poc\\src\\app\\layout": [
       "static/css/app/layout.css"
     ],
+    "C:\\Users\\rohan\\OneDrive\\Desktop\\pwa-poc\\src\\app\\pages\\CaptureLocation\\page": [
+      "static/css/app/pages/CaptureLocation/page.css"
+    ],
     "C:\\Users\\rohan\\OneDrive\\Desktop\\pwa-poc\\src\\app\\pages\\AssessmentType\\page": [
       "static/css/app/pages/AssessmentType/page.css"
-    ],
-    "C:\\Users\\rohan\\OneDrive\\Desktop\\pwa-poc\\src\\app\\pages\\login\\page": [
-      "static/css/app/pages/login/page.css"
     ],
     "C:\\Users\\rohan\\OneDrive\\Desktop\\pwa-poc\\src\\app\\pages\\generic-form-test\\page": [
       "static/css/app/pages/generic-form-test/page.css"
