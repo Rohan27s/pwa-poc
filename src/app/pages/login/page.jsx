@@ -6,10 +6,10 @@ import { useUserData } from "@/app/hooks/useAuth";
 const Login = () => {
 const userData = useUserData();
 console.log(userData);
-  return userData.isAuthenticated ? (
+  return userData?.isAuthenticated ? (
     <MedicalAssessor/>
     ) : (
-      <LoginMedical handleStepChangeForLogin={userData} />
+      <LoginMedical/>
   );
 };
 
