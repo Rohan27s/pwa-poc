@@ -1,13 +1,13 @@
+"use client"
 import React, { useState } from "react";
 import CommonLayout from "../../components/CommonLayout";
 import Button from "../../components/Button";
-import { useNavigate } from "react-router-dom";
 import OtpInput from "react-otp-input";
 import { sendOtpToMobile, verifyOtpSavePassword } from "../../services/api";
 import ROUTE_MAP from "../../services/routing/routeMap";
+import Link from "next/link";
 
 const ForgotPassword = () => {
-  const navigate = useNavigate();
   const [mobile, setMobile] = useState("");
   const [otp, setOtp] = useState("");
   const [error, setError] = useState(false);
@@ -188,12 +188,12 @@ const ForgotPassword = () => {
             <p className="text-secondary text-xl font-bold">
               Your password has been changed successfully
             </p>
-            <p
+            <Link
               className="text-primary text-xl py-8 font-bold"
-              onClick={() => navigate(ROUTE_MAP.root)}
+              href={ROUTE_MAP.root}
             >
               Click here to login
-            </p>
+            </Link>
           </div>
         </div>
       )}

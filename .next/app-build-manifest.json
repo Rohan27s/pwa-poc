@@ -6,23 +6,23 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/pages/login/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/pages/login/page.css",
-      "static/chunks/app/pages/login/page.js"
-    ],
     "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/page.css",
       "static/chunks/app/page.js"
     ],
-    "/pages/CaptureLocation/page": [
+    "/pages/ForgotPassword/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/pages/CaptureLocation/page.css",
-      "static/chunks/app/pages/CaptureLocation/page.js"
+      "static/css/app/pages/ForgotPassword/page.css",
+      "static/chunks/app/pages/ForgotPassword/page.js"
+    ],
+    "/pages/login/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/pages/login/page.css",
+      "static/chunks/app/pages/login/page.js"
     ]
   }
 }

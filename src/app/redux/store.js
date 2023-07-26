@@ -7,6 +7,7 @@ const authSlice = createSlice({
   initialState: {
     isAuthenticated: false,
     user: null,
+    location:null,
   },
   reducers: {
     login: (state, action) => {
@@ -17,6 +18,10 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
       state.user = null;
     },
+    coordinates:(state,action)=>{
+      state.location=action.payload
+      console.log(action.payload);
+    }
   },
 });
 
@@ -35,5 +40,5 @@ const persistedAuthReducer = persistReducer(persistConfig, authSlice.reducer);
 
 const persistor = persistStore(store);
 
-export const { login, logoutUser } = authSlice.actions;
+export const { login, logoutUser,coordinates } = authSlice.actions;
 export { store, persistor };

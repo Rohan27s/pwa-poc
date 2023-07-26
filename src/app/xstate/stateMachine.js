@@ -1,4 +1,3 @@
-// xstate/authMachine.js
 import { createMachine, assign } from 'xstate';
 
 const authMachine = createMachine(

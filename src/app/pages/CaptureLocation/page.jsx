@@ -1,21 +1,18 @@
 "use client"
 import React, { useEffect, useState } from "react";
-import { useRouter } from 'next/navigation';
 import Button from "../../components/Button";
 import CommonLayout from "../../components/CommonLayout";
 import ROUTE_MAP from "@/app/services/routing/routeMap";
 import Linker from "@/app/components/Link";
-
+import { useDispatch } from "react-redux";
+import { coordinates } from "@/app/redux/store";
 const CaptureLocation = () => {
-  const router = useRouter()
-
+  const dispatch = useDispatch();
   const [lat, setLat] = useState(0);
   const [long, setLong] = useState(0);
   const [showMap, setShowMap] = useState(false);
   const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(true);
-  const [role, setRole] = useState('');
-  const [state, setState] = useState(null);
   const [distance, setDistance] = useState(9999);
   const [error, setError] = useState(false);
   const isMobile = window.innerWidth < 769;
@@ -44,6 +41,7 @@ const CaptureLocation = () => {
         //     state.todayAssessment.longitude
         //   )
         // );
+        dispatch(coordinates({lat: p.coords.latitude,long: p.coords.longitude}));
       });
     } else {
       setError(`Please allow location access.`);
@@ -88,33 +86,33 @@ const CaptureLocation = () => {
   //   console.log(route)
   //   router.push(route);
 
-    // if (
-    //   !state?.todayAssessment?.latitude ||
-    //   !state?.todayAssessment?.longitude
-    // ) {
-    //   setError(
-    //     `Institute co-ordinates are missing. Please try again from start`
-    //   );
-    //   setTimeout(() => {
-    //     setError(false);
-    //   }, 5000);
-    //   return;
-    // }
-    // if (!lat || !long) {
-    //   setError(`Please capture location before continuing`);
-    //   setTimeout(() => {
-    //     setError(false);
-    //   }, 5000);
-    //   return;
-    // }
-    // if (distance > 500) {
-    //   setError(`Please ensure you are within the institute premises`);
-    //   setTimeout(() => {
-    //     setError(false);
-    //   }, 5000);
-    //   return;
-    // }
-    // console.log("caleed")
+  // if (
+  //   !state?.todayAssessment?.latitude ||
+  //   !state?.todayAssessment?.longitude
+  // ) {
+  //   setError(
+  //     `Institute co-ordinates are missing. Please try again from start`
+  //   );
+  //   setTimeout(() => {
+  //     setError(false);
+  //   }, 5000);
+  //   return;
+  // }
+  // if (!lat || !long) {
+  //   setError(`Please capture location before continuing`);
+  //   setTimeout(() => {
+  //     setError(false);
+  //   }, 5000);
+  //   return;
+  // }
+  // if (distance > 500) {
+  //   setError(`Please ensure you are within the institute premises`);
+  //   setTimeout(() => {
+  //     setError(false);
+  //   }, 5000);
+  //   return;
+  // }
+  // console.log("caleed")
   // };
 
   useEffect(() => {
@@ -172,13 +170,13 @@ const CaptureLocation = () => {
           />
         )}
         {!disabled &&
-        <Linker
-          text="Continue"
-          styles={
-            "w-80 lg:w-[60%]"
-          }
-          link={ROUTE_MAP.assessment_type}
-        />}
+          <Linker
+            text="Continue"
+            styles={
+              "w-80 lg:w-[60%]"
+            }
+            link={ROUTE_MAP.assessment_type}
+          />}
         <style>
           {`
                     .loader {

@@ -10,7 +10,8 @@ import ROUTE_MAP from "../../services/routing/routeMap";
 import { setCookie } from "../../services/utils";
 import { useDispatch } from 'react-redux';
 import { login, logout } from '../../redux/store';
-const LoginMedical = () => {
+import Link from "next/link";
+const page = () => {
   const dispatch = useDispatch();
   const router = useRouter()
   const [error, setError] = useState("");
@@ -109,14 +110,14 @@ const LoginMedical = () => {
           styles="w-80 lg:w-[70%] animate__animated animate__fadeInDown"
           onClick={handleLogin}
         />
-        <p
+        <Link
           className="text-secondary py-5 animate__animated animate__fadeInDown"
-          onClick={() => router.push(ROUTE_MAP.forgot_password)}
+          href={ROUTE_MAP.forgot_password}
         >
           Forgot Password?
-        </p>
+        </Link>
       </div>
     </CommonLayout>
   );
 };
-export default LoginMedical;
+export default page;
