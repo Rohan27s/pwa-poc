@@ -17,6 +17,11 @@ const Home = () => {
           styles="w-80 lg:w-[70%] lg:mt-[70px] animate__animated animate__fadeInDown"
           link={ROUTE_MAP.login}
         />
+        <Linker
+          text="Register"
+          styles="w-80 lg:w-[70%] lg:mt-[70px] animate__animated animate__fadeInDown"
+          link={ROUTE_MAP.register}
+        />
       </div>
     </CommonLayout>
   );

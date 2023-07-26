@@ -1,5 +1,7 @@
 {
   "/page": "app/page.js",
-  "/pages/ForgotPassword/page": "app/pages/ForgotPassword/page.js",
-  "/pages/login/page": "app/pages/login/page.js"
+  "/pages/capture-location/page": "app/pages/capture-location/page.js",
+  "/pages/assessment-type/page": "app/pages/assessment-type/page.js",
+  "/pages/login/page": "app/pages/login/page.js",
+  "/pages/generic-form-test/page": "app/pages/generic-form-test/page.js"
 }

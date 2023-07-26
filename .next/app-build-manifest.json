@@ -12,17 +12,35 @@
       "static/css/app/page.css",
       "static/chunks/app/page.js"
     ],
-    "/pages/ForgotPassword/page": [
+    "/pages/register/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/pages/ForgotPassword/page.css",
-      "static/chunks/app/pages/ForgotPassword/page.js"
+      "static/css/app/pages/register/page.css",
+      "static/chunks/app/pages/register/page.js"
     ],
     "/pages/login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/pages/login/page.css",
       "static/chunks/app/pages/login/page.js"
+    ],
+    "/pages/capture-location/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/pages/capture-location/page.css",
+      "static/chunks/app/pages/capture-location/page.js"
+    ],
+    "/pages/assessment-type/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/pages/assessment-type/page.css",
+      "static/chunks/app/pages/assessment-type/page.js"
+    ],
+    "/pages/generic-form-test/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/pages/generic-form-test/page.css",
+      "static/chunks/app/pages/generic-form-test/page.js"
     ]
   }
 }

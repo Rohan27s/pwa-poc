@@ -1,6 +1,6 @@
 "use client"
 import React from "react";
-import MedicalAssessor from "../MedicalAssessor/page";
+import MedicalAssessor from "../medical-assessor/page";
 import { useUserData } from "@/app/hooks/useAuth";
 import { useMachine } from '@xstate/react';
 import authMachine from "@/app/xstate/stateMachine";

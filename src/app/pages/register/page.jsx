@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import CommonLayout from "../components/CommonLayout";
+"use client"
+import React, {  useState } from "react";
+import CommonLayout from "../../components/CommonLayout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
-import Button from "../components/Button";
-import { useNavigate } from "react-router-dom";
-import { createUser } from "../services/api";
-import ROUTE_MAP from "../services/routing/routeMap";
+import Button from "../../components/Button";
+import { createUser } from "../../services/api";
+import ROUTE_MAP from "../../services/routing/routeMap";
+import Link from "next/link";
 
 const Register = () => {
-  const navigate = useNavigate();
   const [error, setError] = useState("");
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
@@ -138,12 +138,12 @@ const Register = () => {
             styles="w-80 lg:w-[70%] animate__animated animate__fadeInDown"
             onClick={handleRegister}
           />
-          <p
+          <Link
             className="text-secondary py-5 animate__animated animate__fadeInDown"
-            onClick={() => navigate(ROUTE_MAP.forgot_password)}
+            href={ROUTE_MAP.forgot_password}
           >
             Forgot Password?
-          </p>
+          </Link>
         </div>
       )}
       {userCreated && (
@@ -151,12 +151,12 @@ const Register = () => {
           <p className="text-secondary text-[34px] font-bold mt-5 lg:text-[45px] animate__animated animate__fadeInDown">
             Your account has been created
           </p>
-          <p
+          <Link
             className="text-primary text-md lg:text-[20px] font-medium animate__animated animate__fadeInDown cursor-pointer"
-            onClick={() => navigate(ROUTE_MAP.login)}
+            href={ROUTE_MAP.login}
           >
             Click here to login
-          </p>
+          </Link>
         </div>
       )}
     </CommonLayout>
