@@ -2,7 +2,7 @@
 import './globals.css'
 import 'animate.css';
 import { Provider } from 'react-redux';
-import { store,persistor } from './redux/store.js'
+import { store } from './redux/store.js'
 export const metadata = {
   title: 'Workflow',
   description: 'Workflow is an Open Source project aimed towards the creation of data flow models using config files thereby allowing you to easily create and interact with stateful applications with minimum setup.',

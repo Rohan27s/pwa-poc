@@ -205,7 +205,7 @@ export const getOfflineCapableForm = async (formId) => {
   try {
     const appEnvs = await getFromLocalForage('appEnvs', false);
     const ENKETO_URL = appEnvs.ENKETO_URL;
-    const OPEN_ROSA_SERVER_URL = appEnvs.NEXT_PUBLIC_OPEN_ROSA_SERVER_URL;
+    const OPEN_ROSA_SERVER_URL = appEnvs.OPEN_ROSA_SERVER_URL;
     if (navigator.onLine) {
       let res = await axios.post(ENKETO_URL + "/api/v2/survey/offline",
         {
