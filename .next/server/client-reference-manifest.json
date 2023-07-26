@@ -55,6 +55,22 @@
         "chunks": [],
         "async": false
       }
+    },
+    "(app-client)/./src/app/pages/CaptureLocation/page.jsx": {
+      "*": {
+        "id": "(sc_client)/./src/app/pages/CaptureLocation/page.jsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./src/app/pages/login/page.jsx": {
+      "*": {
+        "id": "(sc_client)/./src/app/pages/login/page.jsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
     }
   },
   "edgeSSRModuleMapping": {},
@@ -154,6 +170,22 @@
         "app/layout:static/chunks/app/layout.js"
       ],
       "async": false
+    },
+    "C:\\Users\\rohan\\OneDrive\\Desktop\\pwa-poc\\src\\app\\pages\\CaptureLocation\\page.jsx": {
+      "id": "(app-client)/./src/app/pages/CaptureLocation/page.jsx",
+      "name": "*",
+      "chunks": [
+        "app/pages/CaptureLocation/page:static/chunks/app/pages/CaptureLocation/page.js"
+      ],
+      "async": false
+    },
+    "C:\\Users\\rohan\\OneDrive\\Desktop\\pwa-poc\\src\\app\\pages\\login\\page.jsx": {
+      "id": "(app-client)/./src/app/pages/login/page.jsx",
+      "name": "*",
+      "chunks": [
+        "app/pages/login/page:static/chunks/app/pages/login/page.js"
+      ],
+      "async": false
     }
   },
   "entryCSSFiles": {
@@ -162,6 +194,12 @@
     ],
     "C:\\Users\\rohan\\OneDrive\\Desktop\\pwa-poc\\src\\app\\layout": [
       "static/css/app/layout.css"
+    ],
+    "C:\\Users\\rohan\\OneDrive\\Desktop\\pwa-poc\\src\\app\\pages\\CaptureLocation\\page": [
+      "static/css/app/pages/CaptureLocation/page.css"
+    ],
+    "C:\\Users\\rohan\\OneDrive\\Desktop\\pwa-poc\\src\\app\\pages\\login\\page": [
+      "static/css/app/pages/login/page.css"
     ]
   }
 }

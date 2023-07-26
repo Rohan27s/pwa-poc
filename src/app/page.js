@@ -6,7 +6,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { saveDataToHasura } from "./services/api";
 import { useServiceWorker } from "./hooks/useServiceWorker";
 import CommonModal from "./components/Modal";
-import Login from "./pages/login/page";
+import Login from "./pages/Default/page";
 
 // export const StateContext = createContext();
 
