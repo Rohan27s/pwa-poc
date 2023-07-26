@@ -1,12 +1,9 @@
 "use client"
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
-
-// import { StateContext } from "../../page";
 import Button from "../../components/Button";
 import CommonLayout from "../../components/CommonLayout";
 import ROUTE_MAP from "@/app/services/routing/routeMap";
-import { getCookie } from "../../services/utils";
 import Linker from "@/app/components/Link";
 
 const CaptureLocation = () => {
@@ -87,9 +84,9 @@ const CaptureLocation = () => {
     return (Value * Math.PI) / 180;
   }
 
-  const handleClick = (route) => {
-    console.log(route)
-    router.push(route);
+  // const handleClick = (route) => {
+  //   console.log(route)
+  //   router.push(route);
 
     // if (
     //   !state?.todayAssessment?.latitude ||
@@ -118,7 +115,7 @@ const CaptureLocation = () => {
     //   return;
     // }
     // console.log("caleed")
-  };
+  // };
 
   useEffect(() => {
     if (lat != 0 && long != 0) setDisabled(false);

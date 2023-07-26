@@ -1,23 +1,14 @@
-"use client"
-import React, { useEffect } from "react";
-import { useRouter } from 'next/navigation';
-import Link from "next/link";
-import Button from "../../components/Button";
+// "use client"
+import React from "react";
 import CommonLayout from "../../components/CommonLayout";
 import ROUTE_MAP from "../../services/routing/routeMap";
 import Linker from "@/app/components/Link";
-// import { cacheForms } from "../../services/utils";
+import { useMachine } from '@xstate/react';
+import authMachine from "@/app/xstate/stateMachine";
 
 const MedicalAssessor = () => {
-  const router = useRouter();
-  const handleClick = (route) => {
-    router.push(route);
-  };
-
-  // Caching Forms on app initilization
-  // useEffect(() => {
-  //   cacheForms('test_form');
-  // }, [])
+  const [current, send] = useMachine(authMachine);
+console.log(current);
 
   return (
     <CommonLayout back="/" backDisabled>

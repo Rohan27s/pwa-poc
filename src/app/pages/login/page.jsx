@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import CommonLayout from "../../components/CommonLayout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
@@ -10,11 +10,9 @@ import ROUTE_MAP from "../../services/routing/routeMap";
 import { setCookie } from "../../services/utils";
 import { useDispatch } from 'react-redux';
 import { login, logout } from '../../redux/store';
-
 const LoginMedical = () => {
   const dispatch = useDispatch();
   const router = useRouter()
-
   const [error, setError] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -26,6 +24,7 @@ const LoginMedical = () => {
       currentRegistration.roles.includes("Admin")
     );
   }
+
 
   const handleLogin = async () => {
     if (!username || !password) {
@@ -39,6 +38,7 @@ const LoginMedical = () => {
 
     if (loginRes?.params?.errMsg && loginRes.responseCode == "FAILURE") {
       setError(loginRes?.params?.errMsg);
+
       setTimeout(() => {
         setError("");
       }, 3000);
@@ -46,17 +46,12 @@ const LoginMedical = () => {
     }
     if (loginRes.responseCode == "OK" && loginRes.result) {
       let loggedInUser = loginRes.result.data.user;
-
-
       dispatch(login(loggedInUser));
       if (userIsAdminForPortal(loggedInUser.user.registrations)) {
         router.push(ROUTE_MAP.admin);
       } else {
         router.push(ROUTE_MAP.root);
       }
-      console.log(loggedInUser);
-    
-
       return;
     }
 
@@ -124,5 +119,4 @@ const LoginMedical = () => {
     </CommonLayout>
   );
 };
-
 export default LoginMedical;

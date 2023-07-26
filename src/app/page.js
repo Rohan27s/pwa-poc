@@ -11,7 +11,6 @@ import Login from "./pages/Default/page";
 // export const StateContext = createContext();
 
 function App() {
-  const [state, setState] = useState();
   const { waitingWorker, showReload, reloadPage } = useServiceWorker();
   const [envModal, showEnvModal] = useState(false);
   const [envs, setEnvs] = useState({
@@ -19,10 +18,6 @@ function App() {
     ENKETO_MANAGER_URL: "",
     OPEN_ROSA_SERVER_URL: ""
   });
-
-  // useEffect(() => {
-  //   const user = getCookie("userData");
-  // }, []);
 
   useEffect(() => {
     if (showReload && waitingWorker) {
@@ -74,7 +69,6 @@ function App() {
   useEffect(() => {
     checkEnvsForApp()
   }, [])
-
 
   return (
     <div className="App">
