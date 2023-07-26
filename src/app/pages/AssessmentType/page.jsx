@@ -58,7 +58,6 @@ const page = () => {
         <p className="text-secondary text-[28px] font-bold mt-4 lg:text-[45px] animate__animated animate__fadeIn">
           Select Form
         </p>
-        {/* <Button text="Test Form" styles="lg:w-[70%] animate__animated animate__fadeInDown" onClick={() => { navigator.onLine ? navigate(ROUTE_MAP.otherforms_param_formName + "hospital_clinical_facilities") : navigate(ROUTE_MAP.offline_odk_form + "hospital_clinical_facilities") }} /> */}
         <Linker text="Test Form" styles="lg:w-[70%] animate__animated animate__fadeInDown" link={ROUTE_MAP.generic_form_test} />
         <div className="flex flex-col py-3 w-full mt-10">
           <span className="text-secondary pb-2 font-medium">
@@ -82,7 +81,11 @@ const page = () => {
             value={dateData}
           />
         </div>
-        <div style={{ fontSize: 18, fontWeight: 'bolder', cursor: 'pointer' }} onClick={saveDataOnline}>Save Online</div>
+        <Button
+          text="Save Online"
+          styles="w-80 lg:w-[60%] animate__animated animate__fadeInDown"
+          onClick={saveDataOnline}
+        />
       </div>
     </CommonLayout>
   )

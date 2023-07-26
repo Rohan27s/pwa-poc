@@ -14,6 +14,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body >
         <head>
+        <link rel="icon" href="/assets/niramyaLogo.png" />
           <title>Ratings App</title>
         </head>
         <Provider store={store}>
