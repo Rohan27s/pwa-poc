@@ -15,12 +15,12 @@ const Home = () => {
         <Linker
           text="Login"
           styles="w-80 lg:w-[70%] lg:mt-[70px] animate__animated animate__fadeInDown"
-          link={ROUTE_MAP.login}
+          link={ROUTE_MAP.login} disabled={false}
         />
         <Linker
           text="Register"
           styles="w-80 lg:w-[70%] lg:mt-[70px] animate__animated animate__fadeInDown"
-          link={ROUTE_MAP.register}
+          link={ROUTE_MAP.register} disabled={false}
         />
       </div>
     </CommonLayout>

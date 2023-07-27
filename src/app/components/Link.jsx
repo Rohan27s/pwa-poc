@@ -1,7 +1,18 @@
 import Link from "next/link";
 import React from "react";
 
-const Linker = ({ text, link, styles = "", css }) => {
+const Linker = ({ text, link, styles = "", css, disabled }) => {
+  if (disabled) {
+    return (
+      <button
+        disabled
+        className={`bg-gray-400 text-white border-gray-400 border-2 font-medium py-3 mt-6 w-full text-[18px] text-center ${styles}`}
+      >
+        {text}
+      </button>
+    );
+  }
+
   return (
     <Link
       href={link}

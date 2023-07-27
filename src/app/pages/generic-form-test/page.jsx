@@ -11,16 +11,18 @@ import { useRouter } from 'next/navigation'
 import formSubmissionMachine from "@/app/xstate/formSubmissionMachine";
 import { useMachine } from '@xstate/react';
 import SuccessPopup from "@/app/components/popup";
+import { useDispatch } from "react-redux";
+import { coordinates } from "@/app/redux/store";
 
 const ENKETO_MANAGER_URL = process.env.NEXT_PUBLIC_ENKETO_MANAGER_UR;
 const ENKETO_URL = process.env.NEXT_PUBLIC_HASURA_URL;
 
 const GenericOdkForm = () => {
   const [current, send] = useMachine(formSubmissionMachine);
-console.log(current);
+  console.log(current);
   const user = useUserData();
   const router = useRouter()
-
+  const dispatch = useDispatch();
   const [surveyUrl, setSurveyUrl] = useState("");
   let { formName } = useParams();
   const scheduleId = useRef();
@@ -97,14 +99,14 @@ console.log(current);
   async function afterFormSubmit(e) {
     console.log("Form Submit Event ----->", e.data);
     send('FORM_SUBMISSION_SUCCESS');
-
+    dispatch(coordinates());
     setShowSuccessPopup(true);
 
     const data = typeof e.data === "string" ? JSON.parse(e.data) : e.data;
-    if( JSON.parse(e?.data)?.state === "ON_FORM_SUCCESS_COMPLETED"){
+    if (JSON.parse(e?.data)?.state === "ON_FORM_SUCCESS_COMPLETED") {
       console.log("Its a success");
       send('FORM_SUBMISSION_SUCCESS');
-
+      dispatch(coordinates());
       // Show the success popup
       setShowSuccessPopup(true);
     }
@@ -216,7 +218,7 @@ console.log(current);
           </>
         )}
         {/* {current.matches("success") && <h1>SUCCESS</h1>} */}
-        {current.matches("success") && 
+        {current.matches("success") &&
           <SuccessPopup onClose={handleCloseSuccessPopup} />
         }
         {/* <div className="mt-5 p-4 border border-orange-300" onClick={clearFormCache}> Clear saved data</div> */}

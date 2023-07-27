@@ -191,7 +191,7 @@ const CaptureLocation = () => {
             styles={
               "w-80 lg:w-[60%]"
             }
-            link={ROUTE_MAP.assessment_type}
+            link={ROUTE_MAP.assessment_type} disabled={false}
           />}
        
       </div>

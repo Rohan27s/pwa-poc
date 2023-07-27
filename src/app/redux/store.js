@@ -8,6 +8,7 @@ const authSlice = createSlice({
     isAuthenticated: false,
     user: null,
     location:null,
+    isSubmitted:false,
   },
   reducers: {
     login: (state, action) => {
@@ -19,8 +20,10 @@ const authSlice = createSlice({
       state.user = null;
     },
     coordinates:(state,action)=>{
-      state.location=action.payload
-      console.log(action.payload);
+      state.location=action.payload;
+    },
+    form:(state)=>{
+      state.isSubmitted=true;
     }
   },
 });
@@ -40,5 +43,5 @@ const persistedAuthReducer = persistReducer(persistConfig, authSlice.reducer);
 
 const persistor = persistStore(store);
 
-export const { login, logoutUser,coordinates } = authSlice.actions;
+export const { login, logoutUser,coordinates,form } = authSlice.actions;
 export { store, persistor };

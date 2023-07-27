@@ -25,7 +25,7 @@ const MedicalAssessor = () => {
         <Linker
           text="Get Started"
           styles="w-80 lg:w-[60%] animate__animated animate__fadeInDown"
-          link={ROUTE_MAP.capture_location}
+          link={ROUTE_MAP.capture_location} disabled={false}
         />
        
 
