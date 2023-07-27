@@ -3,7 +3,6 @@ import React from 'react'
 import { useEffect } from "react";
 import { useState } from "react";
 import { useRouter } from 'next/navigation'
-import Button from "../../components/Button";
 import CommonLayout from "../../components/CommonLayout";
 import ROUTE_MAP from "../../services/routing/routeMap";
 import { getFromLocalForage, setToLocalForage } from "../../services/utils";
@@ -54,12 +53,12 @@ const page = () => {
   }, [])
   return (
     <CommonLayout back={ROUTE_MAP.capture_location}>
-      <div className="flex flex-col px-5 py-8 items-center">
+      <div className="flex flex-col px-5 py-8 items-center justify-center">
         <p className="text-secondary text-[28px] font-bold mt-4 lg:text-[45px] animate__animated animate__fadeIn">
           Select Form
         </p>
-        <Linker text="Test Form" styles="lg:w-[70%] animate__animated animate__fadeInDown" link={ROUTE_MAP.generic_form_test} />
-        <div className="flex flex-col py-3 w-full mt-10">
+        <Linker text="Nursing Form-Medical (CRP)" styles="lg:w-[70%] animate__animated animate__fadeInDown" link={ROUTE_MAP.generic_form_test} />
+        {/* <div className="flex flex-col py-3 w-full mt-10">
           <span className="text-secondary pb-2 font-medium">
             Dummy Text Input
           </span>
@@ -85,7 +84,7 @@ const page = () => {
           text="Save Online"
           styles="w-80 lg:w-[60%] animate__animated animate__fadeInDown"
           onClick={saveDataOnline}
-        />
+        /> */}
       </div>
     </CommonLayout>
   )

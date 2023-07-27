@@ -1,21 +1,25 @@
 "use client"
 import React, { useState, useEffect, useContext, useRef } from "react";
 import CommonLayout from "../../components/CommonLayout";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getMedicalAssessments, getPrefillXML, saveFormSubmission } from "../../services/api";
 import { StateContext } from "@/app/page";
 import { getCookie, getFormData, getFromLocalForage, getOfflineCapableForm, handleFormEvents, isImage, makeDataForPrefill, setCookie, setToLocalForage, updateFormData } from "../../services/utils";
 import ROUTE_MAP from "../../services/routing/routeMap";
 import { useUserData } from "@/app/hooks/useAuth";
 import { useRouter } from 'next/navigation'
+import formSubmissionMachine from "@/app/xstate/formSubmissionMachine";
+import { useMachine } from '@xstate/react';
+import SuccessPopup from "@/app/components/popup";
 
 const ENKETO_MANAGER_URL = process.env.NEXT_PUBLIC_ENKETO_MANAGER_UR;
 const ENKETO_URL = process.env.NEXT_PUBLIC_HASURA_URL;
 
 const GenericOdkForm = () => {
-  // const user = getCookie("userData");
-const user = useUserData();
-const router = useRouter()
+  const [current, send] = useMachine(formSubmissionMachine);
+console.log(current);
+  const user = useUserData();
+  const router = useRouter()
 
   const [surveyUrl, setSurveyUrl] = useState("");
   let { formName } = useParams();
@@ -66,6 +70,7 @@ const router = useRouter()
   const [onFormSuccessData, setOnFormSuccessData] = useState(undefined);
   const [onFormFailureData, setOnFormFailureData] = useState(undefined);
   const [encodedFormURI, setEncodedFormURI] = useState("");
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   // const [encodedFormURI, setEncodedFormURI] = useState(
   //   getFormURI(
   //     formId,
@@ -85,13 +90,27 @@ const router = useRouter()
     latitude: null,
     longitude: null,
   });
-
+  const handleCloseSuccessPopup = () => {
+    setShowSuccessPopup(false);
+    send('CLOSE_SUCCESS_POPUP');
+  };
   async function afterFormSubmit(e) {
     console.log("Form Submit Event ----->", e.data);
+    send('FORM_SUBMISSION_SUCCESS');
+
+    setShowSuccessPopup(true);
+
     const data = typeof e.data === "string" ? JSON.parse(e.data) : e.data;
+    if( JSON.parse(e?.data)?.state === "ON_FORM_SUCCESS_COMPLETED"){
+      console.log("Its a success");
+      send('FORM_SUBMISSION_SUCCESS');
+
+      // Show the success popup
+      setShowSuccessPopup(true);
+    }
     try {
       const { nextForm, formData, onSuccessData, onFailureData } = data;
-      if (data?.state == "ON_FORM_SUCCESS_COMPLETED") {
+      if (data?.state === "ON_FORM_SUCCESS_COMPLETED") {
         const updatedFormData = await updateFormData(formSpec.start);
 
         saveFormSubmission({
@@ -100,6 +119,8 @@ const router = useRouter()
           assessment_type: formName.startsWith('hospital') ? 'hospital' : 'institute',
           form_name: formSpec.start,
         });
+        send('FORM_SUBMISSION_SUCCESS');
+        console.log("Hogya submit");
         setTimeout(() => router.push(ROUTE_MAP.assessment_type), 2000);
         // setCookie(startingForm + `${new Date().toISOString().split("T")[0]}`, '');
         // setCookie(startingForm + `Images${new Date().toISOString().split("T")[0]}`, '');
@@ -117,17 +138,20 @@ const router = useRouter()
             formSpec.forms[nextForm.id].prefill
           )
         );
-         router.push(ROUTE_MAP.assessment_type)
+        router.push(ROUTE_MAP.assessment_type)
       } else if (nextForm?.type === 'url') {
         window.location.href = nextForm.url;
       }
     } catch (e) {
       console.log(e);
+      send('FORM_SUBMISSION_FAILURE');
+
     }
   }
 
   const handleEventTrigger = async (e) => {
-    handleFormEvents(startingForm, afterFormSubmit, e,user)
+    handleFormEvents(startingForm, afterFormSubmit, e, user)
+
   }
 
   const bindEventListener = () => {
@@ -191,6 +215,10 @@ const router = useRouter()
             />
           </>
         )}
+        {/* {current.matches("success") && <h1>SUCCESS</h1>} */}
+        {current.matches("success") && 
+          <SuccessPopup onClose={handleCloseSuccessPopup} />
+        }
         {/* <div className="mt-5 p-4 border border-orange-300" onClick={clearFormCache}> Clear saved data</div> */}
       </div>
     </CommonLayout>

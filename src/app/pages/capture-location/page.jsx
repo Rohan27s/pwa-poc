@@ -6,8 +6,12 @@ import ROUTE_MAP from "@/app/services/routing/routeMap";
 import Linker from "@/app/components/Link";
 import { useDispatch } from "react-redux";
 import { coordinates } from "@/app/redux/store";
+import { useMachine } from '@xstate/react';
+import captureLocationMachine from "@/app/xstate/locationMachine";
+import Loader from "@/app/components/Loader";
 const CaptureLocation = () => {
   const dispatch = useDispatch();
+  const [current, send] = useMachine(captureLocationMachine);
   const [lat, setLat] = useState(0);
   const [long, setLong] = useState(0);
   const [showMap, setShowMap] = useState(false);
@@ -20,6 +24,7 @@ const CaptureLocation = () => {
   const getLocation = () => {
     if (navigator.geolocation && !loading) {
       setLoading(true);
+      send('START_LOADING');
       navigator.geolocation.getCurrentPosition((p) => {
         setLat(p.coords.latitude);
         setLong(p.coords.longitude);
@@ -41,9 +46,11 @@ const CaptureLocation = () => {
         //     state.todayAssessment.longitude
         //   )
         // );
+        send({ type: 'LOCATION_SUCCESS', lat: p.coords.latitude, long: p.coords.longitude });
         dispatch(coordinates({lat: p.coords.latitude,long: p.coords.longitude}));
       });
     } else {
+      send('LOCATION_ERROR');
       setError(`Please allow location access.`);
       setLoading(false);
       setTimeout(() => {
@@ -138,12 +145,16 @@ const CaptureLocation = () => {
           className="h-[200px] mt-4 lg:h-[300px]"
           alt="locationGirl"
         />
-        {!showMap && loading && (
+        {/* {!showMap && loading && (
           <div className="w-[60%] h-[200px] bg-gray-200 flex">
             <div className="loader"></div>
           </div>
+        )} */}
+        {current.matches('loading') && (
+          <Loader/>
         )}
-        {showMap && (
+        {/* {showMap && ( */}
+        {current.matches('success') && (
           <iframe
             src={`https://maps.google.com/maps?q=${lat},${long}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
             width={isMobile ? "100%" : "60%"}
@@ -153,7 +164,12 @@ const CaptureLocation = () => {
             className="mt-5 animate__animated animate__fadeIn"
           />
         )}
-        {error && (
+        {/* {error && (
+          <span className="text-white animate__animated animate__headShake bg-rose-600 font-medium px-4 py-2 text-center mt-2">
+            {error}
+          </span>
+        )} */}
+        {current.matches('error') && (
           <span className="text-white animate__animated animate__headShake bg-rose-600 font-medium px-4 py-2 text-center mt-2">
             {error}
           </span>
@@ -169,7 +185,7 @@ const CaptureLocation = () => {
             }
           />
         )}
-        {!disabled &&
+        {current.matches('success') &&
           <Linker
             text="Continue"
             styles={
@@ -177,24 +193,7 @@ const CaptureLocation = () => {
             }
             link={ROUTE_MAP.assessment_type}
           />}
-        <style>
-          {`
-                    .loader {
-                        border: 8px solid #FFF; /* Light grey */
-                        border-top: 8px solid #F8913D; /* Blue */
-                        border-radius: 50%;
-                        width: 60px;
-                        height: 60px;
-                        animation: spin 2s linear infinite;
-                        margin: auto;
-                      }
-                      
-                      @keyframes spin {
-                        0% { transform: rotate(0deg); }
-                        100% { transform: rotate(360deg); }
-                      }
-                    `}
-        </style>
+       
       </div>
     </CommonLayout>
   );

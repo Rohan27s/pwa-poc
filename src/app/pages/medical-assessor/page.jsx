@@ -7,8 +7,6 @@ import { useMachine } from '@xstate/react';
 import authMachine from "@/app/xstate/stateMachine";
 
 const MedicalAssessor = () => {
-  const [current, send] = useMachine(authMachine);
-console.log(current);
 
   return (
     <CommonLayout back="/" backDisabled>
