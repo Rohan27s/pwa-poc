@@ -17,11 +17,11 @@ const ENKETO_MANAGER_URL = process.env.NEXT_PUBLIC_ENKETO_MANAGER_UR;
 const ENKETO_URL = process.env.NEXT_PUBLIC_HASURA_URL;
 
 const GenericOdkForm = ({ params }) => {
-//   const router1 = useRouter()
-//   const x = router1.query;
-const formName=params.slug.replace(/%/g, ' ');
-console.log(formName);
-//   console.log();
+  const router = useRouter()
+  //   const x = router1.query;
+  const formName = params.slug.replace(/%/g, ' ');
+  console.log(formName);
+  //   console.log();
   const [current, send] = useMachine(formSubmissionMachine);
   console.log(current);
   const user = useUserData();
@@ -98,20 +98,19 @@ console.log(formName);
   });
   const handleCloseSuccessPopup = () => {
     setShowSuccessPopup(false);
-    send('CLOSE_SUCCESS_POPUP');
+    // send('CLOSE_SUCCESS_POPUP');
   };
   async function afterFormSubmit(e) {
     console.log("Form Submit Event ----->", e.data);
-    send('FORM_SUBMISSION_SUCCESS');
-    dispatch(coordinates());
-    setShowSuccessPopup(true);
+    // send("FORM_SUBMISSION_SUCCESS");
+    // dispatch(coordinates());
+    // setShowSuccessPopup(true);
 
     const data = typeof e.data === "string" ? JSON.parse(e.data) : e.data;
     if (JSON.parse(e?.data)?.state === "ON_FORM_SUCCESS_COMPLETED") {
       console.log("Its a success");
-      send('FORM_SUBMISSION_SUCCESS');
+      send("FORM_SUBMISSION_SUCCESS");
       dispatch(coordinates());
-      // Show the success popup
       setShowSuccessPopup(true);
     }
     try {
@@ -125,9 +124,9 @@ console.log(formName);
           assessment_type: formName.startsWith('hospital') ? 'hospital' : 'institute',
           form_name: formSpec.start,
         });
-        send('FORM_SUBMISSION_SUCCESS');
-        console.log("Hogya submit");
-        setTimeout(() => router.push(ROUTE_MAP.assessment_type), 2000);
+        // send('FORM_SUBMISSION_SUCCESS');
+        // console.log("Hogya submit");
+        // setTimeout(() => router.push(ROUTE_MAP.assessment_type), 2000);
         // setCookie(startingForm + `${new Date().toISOString().split("T")[0]}`, '');
         // setCookie(startingForm + `Images${new Date().toISOString().split("T")[0]}`, '');
       }
@@ -197,11 +196,14 @@ console.log(formName);
     indexedDB.databases().then(r => console.log(r))
     console.log(enketoDB)
   }
-
+  useEffect(() => {
+    console.log('Current state:', current);
+  }, [current]);
 
 
   return (
     <CommonLayout back={ROUTE_MAP.assessment_type}>
+      {/* {console.log(current)} */}
       <div className="flex flex-col items-center">
         {/* {encodedFormURI && assData && (
           <>
@@ -222,8 +224,11 @@ console.log(formName);
           </>
         )}
         {/* {current.matches("success") && <h1>SUCCESS</h1>} */}
-        {current.matches("success") &&
+        {current.matches("success") && (
+          <>
+          {console.log("chlgya")}
           <SuccessPopup onClose={handleCloseSuccessPopup} />
+          </>)
         }
         {/* <div className="mt-5 p-4 border border-orange-300" onClick={clearFormCache}> Clear saved data</div> */}
       </div>
