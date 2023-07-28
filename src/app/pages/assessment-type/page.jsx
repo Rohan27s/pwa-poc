@@ -13,9 +13,16 @@ import { useSelector } from 'react-redux/es/hooks/useSelector';
 const page = () => {
   const [textData, setTextData] = useState();
   const [dateData, setDateData] = useState();
+  
   const isFormSubmitted = useSelector((state) => state.auth.isSubmitted);
   // const isFormSubmitted = true;
   const userData = useUserData();
+  const forms = [
+    { name: "Nursing Form-Medical (CRP)", link: ROUTE_MAP.generic_form_test + "/Nursing Form-Medical (CRP)" },
+    { name: "once", link: ROUTE_MAP.generic_form_test + "/once" },
+    { name: "distress", link: ROUTE_MAP.generic_form_test + "/distress" },
+    { name: "cascading_pictures", link: ROUTE_MAP.generic_form_test + "/cascading_pictures" }
+  ];
   const getInitialData = async () => {
     if (navigator.onLine) {
       let appData = await getDataFromHasura(userData);
@@ -57,34 +64,15 @@ const page = () => {
         <p className="text-secondary text-[28px] font-bold mt-4 lg:text-[45px] animate__animated animate__fadeIn">
           Select Form
         </p>
-        <Linker text={!isFormSubmitted?"Nursing Form-Medical (CRP)":"Nursing Form-Medical (CRP) (Already Submitted)"} styles="lg:w-[70%] animate__animated animate__fadeInDown" link={ROUTE_MAP.generic_form_test} disabled={isFormSubmitted}/>
-        {/* <div className="flex flex-col py-3 w-full mt-10">
-          <span className="text-secondary pb-2 font-medium">
-            Dummy Text Input
-          </span>
-          <input
-            type="text"
-            className="border-2 border-primary p-3.5"
-            onChange={(e) => handleInput(setTextData, e.target.value, 'textData')}
-            value={textData}
+        {forms.map((form) => (
+          <Linker
+            key={form.name}
+            text={!isFormSubmitted ? form.name : `${form.name} (Already Submitted)`}
+            styles="lg:w-[70%] animate__animated animate__fadeInDown"
+            link={form.link}
+            disabled={isFormSubmitted}
           />
-        </div>
-        <div className="flex flex-col py-3 w-full ">
-          <span className="text-secondary pb-2 font-medium">
-            Dummy Date Input
-          </span>
-          <input
-            type="date"
-            className="border-2 border-primary p-3.5"
-            onChange={(e) => handleInput(setDateData, e.target.value, 'dateData')}
-            value={dateData}
-          />
-        </div>
-        <Button
-          text="Save Online"
-          styles="w-80 lg:w-[60%] animate__animated animate__fadeInDown"
-          onClick={saveDataOnline}
-        /> */}
+        ))}    
       </div>
     </CommonLayout>
   )

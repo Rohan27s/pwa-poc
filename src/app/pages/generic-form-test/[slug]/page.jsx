@@ -1,11 +1,11 @@
 "use client"
 import React, { useState, useEffect, useContext, useRef } from "react";
-import CommonLayout from "../../components/CommonLayout";
+import CommonLayout from "../../../components/CommonLayout";
 import { useParams } from "react-router-dom";
-import { getMedicalAssessments, getPrefillXML, saveFormSubmission } from "../../services/api";
+import { getMedicalAssessments, getPrefillXML, saveFormSubmission } from "../../../services/api";
 import { StateContext } from "@/app/page";
-import { getCookie, getFormData, getFromLocalForage, getOfflineCapableForm, handleFormEvents, isImage, makeDataForPrefill, setCookie, setToLocalForage, updateFormData } from "../../services/utils";
-import ROUTE_MAP from "../../services/routing/routeMap";
+import { getCookie, getFormData, getFromLocalForage, getOfflineCapableForm, handleFormEvents, isImage, makeDataForPrefill, setCookie, setToLocalForage, updateFormData } from "../../../services/utils";
+import ROUTE_MAP from "../../../services/routing/routeMap";
 import { useUserData } from "@/app/hooks/useAuth";
 import { useRouter } from 'next/navigation'
 import formSubmissionMachine from "@/app/xstate/formSubmissionMachine";
@@ -13,18 +13,22 @@ import { useMachine } from '@xstate/react';
 import SuccessPopup from "@/app/components/popup";
 import { useDispatch } from "react-redux";
 import { coordinates } from "@/app/redux/store";
-
 const ENKETO_MANAGER_URL = process.env.NEXT_PUBLIC_ENKETO_MANAGER_UR;
 const ENKETO_URL = process.env.NEXT_PUBLIC_HASURA_URL;
 
-const GenericOdkForm = () => {
+const GenericOdkForm = ({ params }) => {
+//   const router1 = useRouter()
+//   const x = router1.query;
+const formName=params.slug.replace(/%/g, ' ');
+console.log(formName);
+//   console.log();
   const [current, send] = useMachine(formSubmissionMachine);
   console.log(current);
   const user = useUserData();
-  const router = useRouter()
+  // const router = useRouter()
   const dispatch = useDispatch();
   const [surveyUrl, setSurveyUrl] = useState("");
-  let { formName } = useParams();
+  // let { formName } = useParams();
   const scheduleId = useRef();
   const [formSubmitted] = useState(false);
   const formSpec = {
@@ -175,7 +179,7 @@ const GenericOdkForm = () => {
   }, []);
 
   const getSurveyUrl = async () => {
-    let surveyUrl = await getOfflineCapableForm('Nursing Form-Medical (CRP)');
+    let surveyUrl = await getOfflineCapableForm(formName);
     // let surveyUrl = await getOfflineCapableForm('widgets');
     console.log("SurveyURL:", surveyUrl);
     if (!surveyUrl)
