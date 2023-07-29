@@ -12,24 +12,19 @@ import formSubmissionMachine from "@/app/xstate/formSubmissionMachine";
 import { useMachine } from '@xstate/react';
 import SuccessPopup from "@/app/components/popup";
 import { useDispatch } from "react-redux";
-import { coordinates } from "@/app/redux/store";
+import { coordinates,form } from "@/app/redux/store";
+import Loader from "@/app/components/Loader";
 const ENKETO_MANAGER_URL = process.env.NEXT_PUBLIC_ENKETO_MANAGER_UR;
 const ENKETO_URL = process.env.NEXT_PUBLIC_HASURA_URL;
 
 const GenericOdkForm = ({ params }) => {
-  const router = useRouter()
-  //   const x = router1.query;
-  const formName = params.slug.replace(/%/g, ' ');
-  console.log(formName);
-  //   console.log();
-  const [current, send] = useMachine(formSubmissionMachine);
-  console.log(current);
-  const user = useUserData();
-  // const router = useRouter()
   const dispatch = useDispatch();
-  const [surveyUrl, setSurveyUrl] = useState("");
-  // let { formName } = useParams();
+  const router = useRouter()
+  const user = useUserData();
   const scheduleId = useRef();
+  const formName = params.slug.replace(/%/g, ' ');
+  const [current, send] = useMachine(formSubmissionMachine);
+  const [surveyUrl, setSurveyUrl] = useState("");
   const [formSubmitted] = useState(false);
   const formSpec = {
     forms: {
@@ -57,7 +52,6 @@ const GenericOdkForm = ({ params }) => {
     metaData: {},
   };
 
-  // const { state } = useContext(StateContext);
 
   const getFormURI = (form, ofsd, prefillSpec) => {
     return encodeURIComponent(
@@ -98,22 +92,21 @@ const GenericOdkForm = ({ params }) => {
   });
   const handleCloseSuccessPopup = () => {
     setShowSuccessPopup(false);
-    // send('CLOSE_SUCCESS_POPUP');
+    send('CLOSE_SUCCESS_POPUP');
   };
   async function afterFormSubmit(e) {
-    console.log("Form Submit Event ----->", e.data);
-    // send("FORM_SUBMISSION_SUCCESS");
-    // dispatch(coordinates());
-    // setShowSuccessPopup(true);
+    send("FORM_SUBMIT");
 
+    console.log("Form Submit Event ----->", e.data);
     const data = typeof e.data === "string" ? JSON.parse(e.data) : e.data;
     if (JSON.parse(e?.data)?.state === "ON_FORM_SUCCESS_COMPLETED") {
-      console.log("Its a success");
       send("FORM_SUBMISSION_SUCCESS");
       dispatch(coordinates());
+      dispatch(form(formName));
       setShowSuccessPopup(true);
     }
     try {
+
       const { nextForm, formData, onSuccessData, onFailureData } = data;
       if (data?.state === "ON_FORM_SUCCESS_COMPLETED") {
         const updatedFormData = await updateFormData(formSpec.start);
@@ -123,10 +116,7 @@ const GenericOdkForm = ({ params }) => {
           form_data: updatedFormData,
           assessment_type: formName.startsWith('hospital') ? 'hospital' : 'institute',
           form_name: formSpec.start,
-        });
-        // send('FORM_SUBMISSION_SUCCESS');
-        // console.log("Hogya submit");
-        // setTimeout(() => router.push(ROUTE_MAP.assessment_type), 2000);
+        });;
         // setCookie(startingForm + `${new Date().toISOString().split("T")[0]}`, '');
         // setCookie(startingForm + `Images${new Date().toISOString().split("T")[0]}`, '');
       }
@@ -214,7 +204,13 @@ const GenericOdkForm = ({ params }) => {
             />
           </>
         )} */}
-        {surveyUrl && (
+        {/* {current.matches("submitting") && (
+          <>
+            <Loader/>
+          </>)
+        } */}
+        {/* !current.matches("submitting") && */}
+        {(surveyUrl) && (
           <>
             <iframe
               title="form"
@@ -223,11 +219,9 @@ const GenericOdkForm = ({ params }) => {
             />
           </>
         )}
-        {/* {current.matches("success") && <h1>SUCCESS</h1>} */}
         {current.matches("success") && (
           <>
-          {console.log("chlgya")}
-          <SuccessPopup onClose={handleCloseSuccessPopup} />
+            <SuccessPopup onClose={handleCloseSuccessPopup} />
           </>)
         }
         {/* <div className="mt-5 p-4 border border-orange-300" onClick={clearFormCache}> Clear saved data</div> */}

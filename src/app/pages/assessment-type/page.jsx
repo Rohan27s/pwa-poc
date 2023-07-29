@@ -13,9 +13,8 @@ import { useSelector } from 'react-redux/es/hooks/useSelector';
 const page = () => {
   const [textData, setTextData] = useState();
   const [dateData, setDateData] = useState();
-  
-  const isFormSubmitted = useSelector((state) => state.auth.isSubmitted);
-  // const isFormSubmitted = true;
+  const [formData, setformData] = useState()
+
   const userData = useUserData();
   const forms = [
     { name: "Nursing Form-Medical (CRP)", link: ROUTE_MAP.generic_form_test + "/Nursing Form-Medical (CRP)" },
@@ -23,6 +22,17 @@ const page = () => {
     { name: "distress", link: ROUTE_MAP.generic_form_test + "/distress" },
     { name: "cascading_pictures", link: ROUTE_MAP.generic_form_test + "/cascading_pictures" }
   ];
+  const formSubmitted = useSelector((state) => state.auth.formSubmitted); 
+
+  useEffect(() => {
+    const isFormSubmitted = (formName) => formSubmitted.includes(formName);
+    const updatedForms = forms.map((form) => ({
+      ...form,
+      disabled: isFormSubmitted(form.name),
+    }));
+  setformData(updatedForms);    
+  }, [formSubmitted])
+  
   const getInitialData = async () => {
     if (navigator.onLine) {
       let appData = await getDataFromHasura(userData);
@@ -64,13 +74,13 @@ const page = () => {
         <p className="text-secondary text-[28px] font-bold mt-4 lg:text-[45px] animate__animated animate__fadeIn">
           Select Form
         </p>
-        {forms.map((form) => (
+        {formData?.map((form) => (
           <Linker
             key={form.name}
-            text={!isFormSubmitted ? form.name : `${form.name} (Already Submitted)`}
+            text={!form.disabled ? form.name : `${form.name} (Already Submitted)`}
             styles="lg:w-[70%] animate__animated animate__fadeInDown"
             link={form.link}
-            disabled={isFormSubmitted}
+            disabled={form.disabled}
           />
         ))}    
       </div>

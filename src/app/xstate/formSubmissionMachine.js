@@ -11,6 +11,11 @@ const formSubmissionMachine = createMachine(
     states: {      
       idle: {
         on: {
+          FORM_SUBMIT: 'submitting',
+        },
+      },
+      submitting: {
+        on: {
           FORM_SUBMISSION_SUCCESS: 'success',
           FORM_SUBMISSION_FAILURE: 'failure',
         },

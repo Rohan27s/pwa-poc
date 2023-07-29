@@ -8,7 +8,7 @@ const authSlice = createSlice({
     isAuthenticated: false,
     user: null,
     location:null,
-    isSubmitted:false,
+    formSubmitted: [],
   },
   reducers: {
     login: (state, action) => {
@@ -22,9 +22,9 @@ const authSlice = createSlice({
     coordinates:(state,action)=>{
       state.location=action.payload;
     },
-    form:(state)=>{
-      state.isSubmitted=true;
-    }
+    form: (state, action) => {
+      state.formSubmitted.push(action.payload); // Push the new form name into the array
+    },
   },
 });
 
