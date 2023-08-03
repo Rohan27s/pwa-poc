@@ -22,7 +22,8 @@ const GenericOdkForm = ({ params }) => {
   const router = useRouter()
   const user = useUserData();
   const scheduleId = useRef();
-  const formName = params.slug.replace(/%/g, ' ');
+  const formName = decodeURIComponent(params.slug);
+  console.log(formName);
   const [current, send] = useMachine(formSubmissionMachine);
   const [surveyUrl, setSurveyUrl] = useState("");
   const [formSubmitted] = useState(false);
