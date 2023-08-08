@@ -1,14 +1,12 @@
 "use client"
 import "./App.css";
-import { createContext, useEffect, useRef, useState } from "react";
-import { getCookie, getFromLocalForage, setToLocalForage } from "./services/utils";
+import {  useEffect, useState } from "react";
+import { getFromLocalForage, setToLocalForage } from "./services/utils";
 import toast, { Toaster } from 'react-hot-toast';
 import { saveDataToHasura } from "./services/api";
 import { useServiceWorker } from "./hooks/useServiceWorker";
 import CommonModal from "./components/Modal";
 import Login from "./pages/Default/page";
-
-// export const StateContext = createContext();
 
 function App() {
   const { waitingWorker, showReload, reloadPage } = useServiceWorker();
