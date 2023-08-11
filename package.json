@@ -48,5 +48,8 @@
     "workbox-strategies": "^7.0.0",
     "workbox-streams": "^7.0.0",
     "xstate": "^4.38.1"
+  },
+  "devDependencies": {
+    "cypress": "^12.17.3"
   }
 }

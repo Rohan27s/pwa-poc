@@ -12,6 +12,12 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
+    "/pages/assessment-type/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/pages/assessment-type/page.css",
+      "static/chunks/app/pages/assessment-type/page.js"
+    ],
     "/pages/login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -29,12 +35,6 @@
       "static/chunks/main-app.js",
       "static/css/app/pages/generic-form-test/[slug]/page.css",
       "static/chunks/app/pages/generic-form-test/[slug]/page.js"
-    ],
-    "/pages/assessment-type/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/pages/assessment-type/page.css",
-      "static/chunks/app/pages/assessment-type/page.js"
     ]
   }
 }
