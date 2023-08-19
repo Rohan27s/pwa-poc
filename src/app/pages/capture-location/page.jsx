@@ -2,13 +2,13 @@
 import React, { useEffect, useState } from "react";
 import Button from "../../components/Button";
 import CommonLayout from "../../components/CommonLayout";
-import ROUTE_MAP from "@/app/services/routing/routeMap";
-import Linker from "@/app/components/Link";
+import ROUTE_MAP from "src/app/services/routing/routeMap";
+import Linker from "src/app/components/Link";
 import { useDispatch } from "react-redux";
-import { coordinates } from "@/app/redux/store";
+import { coordinates } from "src/app/redux/store";
 import { useMachine } from '@xstate/react';
-import captureLocationMachine from "@/app/xstate/locationMachine";
-import Loader from "@/app/components/Loader";
+import captureLocationMachine from "src/app/xstate/locationMachine";
+import Loader from "src/app/components/Loader";
 const CaptureLocation = () => {
   const dispatch = useDispatch();
   const [current, send] = useMachine(captureLocationMachine);

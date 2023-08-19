@@ -1,9 +1,9 @@
 "use client"
 import React from "react";
 import MedicalAssessor from "../medical-assessor/page";
-import { useUserData } from "@/app/hooks/useAuth";
+import { useUserData } from "src/app/hooks/useAuth";
 import { useMachine } from '@xstate/react';
-import authMachine from "@/app/xstate/stateMachine";
+import authMachine from "src/app/xstate/stateMachine";
 import Home from "../Home/page";
 const Login = () => {
   const userData = useUserData();

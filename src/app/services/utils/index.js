@@ -4,8 +4,8 @@ import XMLParser from "react-xml-parser";
 import localforage from "localforage";
 import { getMedicalAssessments, getPrefillXML, getSubmissionXML } from "../api";
 import axios from "axios";
-import { userData } from "@/app/pages/Default/page";
-import { useUserData } from "@/app/hooks/useAuth";
+// import { userData } from "@/app/pages/Default/page";
+// import { useUserData } from "@/app/hooks/useAuth";
 
 export const makeHasuraCalls = async (query, userData) => {
   return fetch(process.env.NEXT_PUBLIC_HASURA_URL, {

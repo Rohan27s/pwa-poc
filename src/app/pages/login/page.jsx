@@ -1,5 +1,5 @@
 "use client"
-import React, { useState,useEffect } from "react";
+import React, { useState } from "react";
 import CommonLayout from "../../components/CommonLayout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
@@ -7,11 +7,10 @@ import Button from "../../components/Button";
 import { useRouter } from 'next/navigation';
 import { loginMedical } from "../../services/api";
 import ROUTE_MAP from "../../services/routing/routeMap";
-import { setCookie } from "../../services/utils";
 import { useDispatch } from 'react-redux';
-import { login, logout } from '../../redux/store';
+import { login } from '../../redux/store';
 import Link from "next/link";
-const page = () => {
+const Page = () => {
   const dispatch = useDispatch();
   const router = useRouter()
   const [error, setError] = useState("");
@@ -120,4 +119,4 @@ const page = () => {
     </CommonLayout>
   );
 };
-export default page;
+export default Page;

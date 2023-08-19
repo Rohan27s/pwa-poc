@@ -2,9 +2,7 @@
 import React from "react";
 import CommonLayout from "../../components/CommonLayout";
 import ROUTE_MAP from "../../services/routing/routeMap";
-import Linker from "@/app/components/Link";
-import { useMachine } from '@xstate/react';
-import authMachine from "@/app/xstate/stateMachine";
+import Linker from "src/app/components/Link";
 
 const MedicalAssessor = () => {
 

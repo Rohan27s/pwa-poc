@@ -7,8 +7,8 @@ import ROUTE_MAP from "../../services/routing/routeMap";
 import { getFromLocalForage, setToLocalForage } from "../../services/utils";
 import toast from 'react-hot-toast';
 import { getDataFromHasura, saveDataToHasura } from "../../services/api";
-import { useUserData } from '@/app/hooks/useAuth';
-import Linker from '@/app/components/Link';
+import { useUserData } from '../../../app/hooks/useAuth';
+import Linker from 'src/app/components/Link';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 const page = () => {
   const [textData, setTextData] = useState();

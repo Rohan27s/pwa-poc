@@ -11,7 +11,7 @@ import CommonModal from "../Modal";
 import isOnline from 'is-online';
 import { logout } from "../../services/utils/index.js";
 import { useEffect } from "react";
-import { logoutUser } from "@/app/redux/store";
+import { logoutUser } from "src/app/redux/store";
 import { useDispatch } from "react-redux";
 const CommonLayout = (props) => {
   const router = useRouter()

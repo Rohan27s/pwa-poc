@@ -3,17 +3,17 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import CommonLayout from "../../../components/CommonLayout";
 import { useParams } from "react-router-dom";
 import { getMedicalAssessments, getPrefillXML, saveFormSubmission } from "../../../services/api";
-import { StateContext } from "@/app/page";
+// import { StateContext } from "@/app/page";
 import { getCookie, getFormData, getFromLocalForage, getOfflineCapableForm, handleFormEvents, isImage, makeDataForPrefill, setCookie, setToLocalForage, updateFormData } from "../../../services/utils";
 import ROUTE_MAP from "../../../services/routing/routeMap";
-import { useUserData } from "@/app/hooks/useAuth";
+import { useUserData } from "src/app/hooks/useAuth";
 import { useRouter } from 'next/navigation'
-import formSubmissionMachine from "@/app/xstate/formSubmissionMachine";
+import formSubmissionMachine from "src/app/xstate/formSubmissionMachine";
 import { useMachine } from '@xstate/react';
-import SuccessPopup from "@/app/components/popup";
+import SuccessPopup from "src/app/components/popup";
 import { useDispatch } from "react-redux";
-import { coordinates,form } from "@/app/redux/store";
-import Loader from "@/app/components/Loader";
+import { coordinates,form } from "src/app/redux/store";
+// import Loader from "@/app/components/Loader";
 const ENKETO_MANAGER_URL = process.env.NEXT_PUBLIC_ENKETO_MANAGER_UR;
 const ENKETO_URL = process.env.NEXT_PUBLIC_HASURA_URL;
 
