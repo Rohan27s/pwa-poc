@@ -10,7 +10,7 @@ import { getDataFromHasura, saveDataToHasura } from "../../services/api";
 import { useUserData } from '../../../app/hooks/useAuth';
 import Linker from 'src/app/components/Link';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-const page = () => {
+const Page = () => {
   const [textData, setTextData] = useState();
   const [dateData, setDateData] = useState();
   const [formData, setformData] = useState()
@@ -88,4 +88,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

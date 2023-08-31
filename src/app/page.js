@@ -12,9 +12,9 @@ function App() {
   const { waitingWorker, showReload, reloadPage } = useServiceWorker();
   const [envModal, showEnvModal] = useState(false);
   const [envs, setEnvs] = useState({
-    ENKETO_URL: "m",
-    ENKETO_MANAGER_URL: "m",
-    OPEN_ROSA_SERVER_URL: "m"
+    ENKETO_URL: "",
+    ENKETO_MANAGER_URL: "",
+    OPEN_ROSA_SERVER_URL: ""
   });
 
   useEffect(() => {
