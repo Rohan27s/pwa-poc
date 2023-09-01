@@ -13,4 +13,14 @@ describe('<Page />', () => {
       </Provider>
     );
   });
+  it('renders without errors', () => {
+    cy.get('p').should('contain.text', 'Select Form');
+    cy.get('a').should('have.length', 4);
+  });
+
+  it('clicks on a form link', () => {
+    cy.get('a').first().click(); 
+  });
 });
+
+
